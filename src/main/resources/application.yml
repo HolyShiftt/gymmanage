@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gymmanage?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    password: root
+    username: root
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
