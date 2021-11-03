@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="js/layui/css/layui.css">
+    <link rel="stylesheet" href="css/login/login.css">
+</head>
+
+<body class="signin">
+<div class="wrap">
+    <img src="img/login/login_background.jpg" class="imgStyle">
+    <div class="loginForm">
+        <form>
+            <div class="logoHead">
+                <h1 style="margin-top: 15px">体育运动场馆管理系统</h1>
+            </div>
+            <div class="usernameWrapDiv">
+                <div class="usernameLabel">
+                    <label>用户名:</label>
+                </div>
+                <div class="usernameDiv">
+                    <i class="layui-icon layui-icon-username adminIcon"></i>
+                    <input id="loginUsername" class="layui-input adminInput" type="text" name="username" placeholder="输入用户名" >
+                </div>
+            </div>
+            <div class="usernameWrapDiv">
+                <div class="usernameLabel">
+                    <label>密码:</label>
+                </div>
+                <div class="passwordDiv">
+                    <i class="layui-icon layui-icon-password adminIcon"></i>
+                    <input id="loginPassword" class="layui-input adminInput" type="password" name="password" placeholder="输入密码">
+                </div>
+            </div>
+            <div class="usernameWrapDiv">
+                <div class="submitDiv">
+                    <button id="sub" lay-submit="" lay-filter="sub" class="submit layui-btn">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/login/login.js"></script>
+</body>
+
+</html>

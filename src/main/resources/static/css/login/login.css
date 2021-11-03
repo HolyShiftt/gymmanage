@@ -1,0 +1,89 @@
+.wrap{
+    width: 100%;
+    height: 100%;
+    background: url("/img/login/login_background.jpg") no-repeat;
+    background-size: cover;
+    opacity: 0.75;
+}
+.loginForm{
+    width: 420px;
+    height: 320px;
+    min-height: 320px;
+    max-height: 320px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    z-index: 999;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 3px 18px rgba(100, 0, 0, .5);
+
+}
+.usernameDiv{
+    width: 300px;
+    height: 40px;
+    padding-left: 130px;
+    padding-top: 30px;
+
+}
+.adminInput{
+    width: 200px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 0.5em;
+}
+.passwordDiv{
+    width: 300px;
+    height: 40px;
+    padding-left: 130px;
+    padding-top: 28px;
+}
+i{
+    position: absolute;
+}
+.adminIcon{
+    font-size: 22px;
+    margin-top: 8px;
+    margin-left: 165px;
+}
+.logoHead{
+    width: 300px;
+    height: 60px;
+    padding-left: 60px;
+    padding-top: 25px;
+}
+.usernameLabel{
+    width: 60px;
+    height: 30px;
+    font-size: 16px;
+    float: left;
+    margin-left: 55px;
+    margin-top: 40px;
+}
+.usernameWrapDiv{
+    width: 400px;
+    height: 70px;
+}
+.submitDiv{
+    width: 150px;
+    height: 40px;
+    padding-left: 150px;
+    padding-top: 30px;
+    float: left;
+}
+.submit{
+    width: 100px;
+    height: 40px;
+    border-radius: 0.5em;
+}
+img{
+    position: absolute;
+}
+.imgStyle{
+    width: 100%;
+    height: 100%;
+}
