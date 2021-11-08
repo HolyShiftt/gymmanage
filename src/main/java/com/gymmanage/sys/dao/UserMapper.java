@@ -16,4 +16,6 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User user);
+
+    String getPwd(String username);
 }

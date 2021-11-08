@@ -64,4 +64,8 @@
     <include refid="where_sql"></include>
     order by e.id
   </select>
+
+  <select id="getPwd" resultType="java.lang.String">
+    select pwd from sys_user where username = #{username}
+  </select>
 </mapper>

@@ -12,4 +12,6 @@ public interface UserService {
     void updateUser(User user);
 
     void deleteUser(Integer id);
+
+    boolean checkPwd(String username, String pwd);
 }

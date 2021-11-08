@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -26,6 +28,36 @@ public class UserController {
         int length = userService.selectAll().size();
         return Table.success(Long.valueOf(length),userService.selectAll());
     }
+
+    // 用户登录检查
+    @RequestMapping("/userCheck")
+    @ResponseBody
+    public AjaxRes userCheck(String username, String pwd, HttpSession session){
+        AjaxRes ajaxRes = new AjaxRes();
+        boolean res = userService.checkPwd(username, pwd);
+        ajaxRes.setSuccess(res);
+        if (res){
+            ajaxRes.setMsg("登录成功");
+            session.setAttribute("username",username);
+        }else {
+            ajaxRes.setMsg("登录失败");
+        }
+        return ajaxRes;
+    }
+
+    // 用户注销
+    @RequestMapping("/logout")
+    @ResponseBody
+    public AjaxRes logout(HttpSession session){
+        AjaxRes ajaxRes = new AjaxRes();
+        if (session != null) {
+            session.invalidate();//调用session的invalidate()方法，将保存的session删除
+        }
+        ajaxRes.setSuccess(true);
+        ajaxRes.setMsg("退出登录成功！");
+        return ajaxRes;
+    }
+
 
     @RequestMapping("/userAdd")
     @ResponseBody

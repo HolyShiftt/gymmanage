@@ -9,10 +9,10 @@
 </head>
 
 <body class="signin">
-<div class="wrap">
+<div class="wrap layui-form" lay-filter="loginForm">
     <img src="img/login/login_background.jpg" class="imgStyle">
     <div class="loginForm">
-        <form>
+        <form id="useLogin">
             <div class="logoHead">
                 <h1 style="margin-top: 15px">体育运动场馆管理系统</h1>
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="usernameDiv">
                     <i class="layui-icon layui-icon-username adminIcon"></i>
-                    <input id="loginUsername" class="layui-input adminInput" type="text" name="username" placeholder="输入用户名" >
+                    <input id="loginUsername" class="layui-input adminInput" type="text" name="username" placeholder="输入用户名" lay-verify="required">
                 </div>
             </div>
             <div class="usernameWrapDiv">
@@ -31,14 +31,17 @@
                 </div>
                 <div class="passwordDiv">
                     <i class="layui-icon layui-icon-password adminIcon"></i>
-                    <input id="loginPassword" class="layui-input adminInput" type="password" name="password" placeholder="输入密码">
+                    <input id="loginPassword" class="layui-input adminInput" type="password" name="pwd" placeholder="输入密码" lay-verify="required">
                 </div>
             </div>
-            <div class="usernameWrapDiv">
-                <div class="submitDiv">
-                    <button id="sub" lay-submit="" lay-filter="sub" class="submit layui-btn">登录</button>
+            <div class="layui-form-item">
+                <div class="usernameWrapDiv">
+                    <div class="submitDiv">
+                        <button id="sub" lay-submit="" lay-filter="sub" class="layui-btn">登录</button>
+                    </div>
                 </div>
             </div>
+
         </form>
     </div>
 </div>
