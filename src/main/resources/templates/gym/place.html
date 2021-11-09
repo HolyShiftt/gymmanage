@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>场馆管理</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+</head>
+<body>
+<div style="padding: 0 30px;">
+    <div class="table_head_left">
+        <button type="button" class="layui-btn layui-btn-normal" id="showBtn"><i class="layui-icon">&#xe666;</i>展示全部</button>
+        <button type="button" class="layui-btn layui-btn-normal" id="addBtn"><i class="layui-icon">&#xe654;</i>添加</button>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md2">
+            <table class="layui-hide" id="kindTable" lay-filter="kindTable"></table>
+        </div>
+        <div class="layui-col-md10">
+            <table class="layui-hide" id="placeTable" lay-filter="placeTable"></table>
+        </div>
+    </div>
+</div>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/gym/place.js"></script>
+</body>
+</html>

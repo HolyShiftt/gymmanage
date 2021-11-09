@@ -92,4 +92,12 @@ layui.use(['layer','util','tree','element'], function(){
         }
     });
 
+
+
 });
+setTimeout(function() {
+    // 其它浏览器
+    var e = document.createEvent("MouseEvents");
+    e.initEvent("click", true, true);
+    document.getElementById("sys1").dispatchEvent(e);
+}, 2000);

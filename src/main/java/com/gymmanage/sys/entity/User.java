@@ -25,4 +25,6 @@ public class User {
     private Date jobTime;
 
     private boolean state;
+
+    private String job;
 }

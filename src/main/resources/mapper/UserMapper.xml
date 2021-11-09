@@ -8,62 +8,10 @@
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="jop" property="job" jdbcType="VARCHAR" />
     <result column="job_time" property="jobTime" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="BIT" />
-
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from employee
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.gymmanage.sys.entity.User" >
-    insert into employee (id, username, password, 
-      tel, inputtime, state, 
-      admin, dep_id)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{inputtime,jdbcType=TIMESTAMP}, #{state,jdbcType=BIT}, 
-      #{admin,jdbcType=BIT}, #{depId,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.gymmanage.sys.entity.User" >
-    update employee
-    set username = #{username,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      inputtime = #{inputtime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=BIT},
-      admin = #{admin,jdbcType=BIT},
-      dep_id = #{depId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, username, password, tel, inputtime, state, admin, dep_id
-    from employee
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-
-  <sql id="where_sql">
-    <where>
-      <if test="keyword != null and keyword !=''">
-        and e.username like concat('%',#{keyword},'%')
-        or e.tel like concat('%',#{keyword},'%')
-        or d.`name` like concat('%',#{keyword},'%')
-      </if>
-      <if test="startDate != null and startDate != ''">
-        and e.inputtime &gt;= #{startDate}
-      </if>
-      <if test="endDate != null and endDate != ''">
-        and e.inputtime &lt;= #{endDate}
-      </if>
-    </where>
-  </sql>
-
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select e.id, e.username, e.password, e.tel, e.inputtime, e.state, e.admin
-    , d.id as d_id, d.`name` as d_name
-    from employee as e left join department as d
-    on e.dep_id = d.id
-    <include refid="where_sql"></include>
-    order by e.id
-  </select>
 
   <select id="getPwd" resultType="java.lang.String">
     select pwd from sys_user where username = #{username}

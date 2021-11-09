@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加场馆</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+</head>
+<body>
+<div class="layer_self_wrap">
+    <form class="layui-form" lay-filter="placeAdd" style="margin-top: 20px">
+        <div style="padding-right:50px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">场馆名称<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">场馆类型<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="kind" id="kind" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">场馆大小</label>
+                <div class="layui-input-block">
+                    <input type="text" name="size" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理人员<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input id="managerId" name="managerId" type="hidden">
+                    <input id="managerName" name="managerName" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">消费说明</label>
+                <div class="layui-input-block">
+                    <textarea name="spend" maxlength="255" autocomplete="off" class="layui-textarea" type="text"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">场馆状态</label>
+                <div class="layui-input-block">
+                    <input type="text" name="remark" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary" id="close">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/js/layui/layui.js"></script>
+</body>
+</html>
