@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gymmanage.sys.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.gymmanage.sys.entity.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="permission_id" property="permissionId" jdbcType="INTEGER" />
+    <association property="parent" javaType="com.gymmanage.sys.entity.Menu" columnPrefix="m_">
+      <result property="id" column="id" />
+      <result property="title" column="title" />
+      <result property="url" column="url" />
+    </association>
+    <collection property="children" ofType="com.gymmanage.sys.entity.Menu" select="listChildMenu" column="id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gymmanage.sys.entity.Menu" >
+    insert into sys_menu (id, title, url,
+      parent_id, permission_id)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gymmanage.sys.entity.Menu" >
+    update sys_menu
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, title, url, parent_id, permission_id
+    from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from sys_menu
+  </select>
+  <select id="menuTree" resultMap="BaseResultMap">
+    select * from sys_menu
+     where parent_id is null
+  </select>
+  <select id="listChildMenu" resultMap="BaseResultMap">
+    select * from sys_menu as m
+     where parent_id = #{id}
+  </select>
+  <select id="getChildrenId" resultType="java.lang.Integer">
+    select id from sys_menu where parent_id = #{id}
+  </select>
+</mapper>

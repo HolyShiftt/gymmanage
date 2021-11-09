@@ -17,9 +17,7 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo layui-hide-xs layui-bg-black">体育运动场馆管理系统</div>
-        <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <!-- 移动端显示 -->
             <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
                 <i class="layui-icon layui-icon-spread-left"></i>
             </li>
@@ -28,7 +26,7 @@
             <li class="layui-nav-item layui-hide layui-show-md-inline-block" style="margin-right: 50px">
                 <a href="javascript:;" id="username" style="margin-right: 20px;font-size: 18px" ></a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">个人中心</a></dd>
+                    <dd><a href="javascript:void(0)">个人中心</a></dd>
                     <dd><a href="">设置</a></dd>
                     <dd><a href="javascript:void(0)" id="logout">注销</a></dd>
                 </dl>
@@ -40,14 +38,23 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-filter="test" >
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">菜单</a>
-                    <dl class="layui-nav-child">
-                        <div id="tree"></div>
+                    <a href="javascript:void(0)">运动馆管理</a>
+                    <dl class="layui-nav-child" id="gym">
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">公告</a>
-                    <dl class="layui-nav-child">
+                    <a href="javascript:void(0)">客户管理</a>
+                    <dl class="layui-nav-child" id="client">
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:void(0)">消费管理</a>
+                    <dl class="layui-nav-child" id="spend">
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:void(0)">系统菜单</a>
+                    <dl class="layui-nav-child" id="sys">
                     </dl>
                 </li>
             </ul>

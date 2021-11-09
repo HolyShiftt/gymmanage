@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class indexController {
+public class IndexController {
 
     @RequestMapping("/")
     public String toPage(HttpSession session) {
