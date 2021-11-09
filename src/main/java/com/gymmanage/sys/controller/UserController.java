@@ -19,14 +19,7 @@ public class UserController {
 
     @RequestMapping("/userPage")
     public String user(){
-        return "/index";
-    }
-
-    @RequestMapping("/userList")
-    @ResponseBody
-    public Table userList(){
-        int length = userService.selectAll().size();
-        return Table.success(Long.valueOf(length),userService.selectAll());
+        return "/user";
     }
 
     // 用户登录检查
@@ -45,6 +38,13 @@ public class UserController {
         return ajaxRes;
     }
 
+    // 获取用户信息
+    @RequestMapping("/getUser")
+    @ResponseBody
+    public String gete(HttpSession session){
+        return session.getAttribute("username").toString();
+    }
+
     // 用户注销
     @RequestMapping("/logout")
     @ResponseBody
@@ -58,6 +58,12 @@ public class UserController {
         return ajaxRes;
     }
 
+    @RequestMapping("/userList")
+    @ResponseBody
+    public Table userList(){
+        int length = userService.selectAll().size();
+        return Table.success(Long.valueOf(length),userService.selectAll());
+    }
 
     @RequestMapping("/userAdd")
     @ResponseBody

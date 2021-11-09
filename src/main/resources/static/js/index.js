@@ -1,33 +1,33 @@
-layui.use(['element', 'layer', 'util','tree'], function(){
-    var element = layui.element
-        ,layer = layui.layer
-        ,util = layui.util
-        ,$ = layui.jquery
-        ,tree = layui.tree;
+layui.use('layer', function(){
+    var layer = layui.layer
+        ,$ = layui.jquery;
 
-    // // 获取用户信息
-    // $.ajax({
-    //     url:"/getUser",
-    //     success:function (d) {
-    //         $("#username").append(d)
-    //     }
-    // })
+    // 获取用户信息
+    $.ajax({
+        url:"/user/getUser",
+        success:function (d) {
+            $("#username").append(d)
+        }
+    })
 
     // 注销
     $("#logout").click(function () {
-        $.ajax({
-            method:"post",
-            url:"/user/logout",
-            success : function(d) {
-                if (d.success){
-                    layer.msg("退出登录成功", {
-                        icon : 6,
-                        time : 2000
-                    }, function() {
-                        window.location.href = "/";
-                    })
+        layer.confirm("你确定要注销账户？",function (index) {
+            layer.load();
+            $.ajax({
+                method:"post",
+                url:"/user/logout",
+                success : function(d) {
+                    if (d.success){
+                        layer.msg("注销成功", {
+                            icon : 6,
+                            time : 2000
+                        }, function() {
+                            window.location.href = "/";
+                        })
+                    }
                 }
-            }
+            })
         })
     })
 
