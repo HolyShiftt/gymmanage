@@ -1,7 +1,6 @@
-layui.use(['layer','util','tree','element'], function(){
+layui.use(['layer','util','element'], function(){
     var layer = layui.layer
         ,util = layui.util
-        ,tree = layui.tree
         ,element = layui.element
         ,$ = layui.jquery;
 
@@ -45,7 +44,7 @@ layui.use(['layer','util','tree','element'], function(){
                 type: 1
                 ,content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
                 ,area: ['260px', '100%']
-                ,offset: 'rt' //右上角
+                ,offset: 'rt'
                 ,anim: 5
                 ,shadeClose: true
             });
@@ -92,12 +91,12 @@ layui.use(['layer','util','tree','element'], function(){
         }
     });
 
-
+    // 默认展示场馆管理
+    $(function() {
+        setTimeout(function() {
+            $("#sys5").click();
+        }, 100);
+    });
 
 });
-setTimeout(function() {
-    // 其它浏览器
-    var e = document.createEvent("MouseEvents");
-    e.initEvent("click", true, true);
-    document.getElementById("sys1").dispatchEvent(e);
-}, 2000);
+
