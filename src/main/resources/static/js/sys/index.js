@@ -80,13 +80,21 @@ layui.use(['layer','util','element'], function(){
                             title: title
                             ,content: "<iframe src="+url+" frameborder='0' width='100%' height="+height+"></iframe>"
                             ,id: id
+                            ,value:url
+                            ,autoRefresh:true
                         });
                         //切换到指定Tab项
                         element.tabChange('tabs', id);
                     }else{
                         element.tabChange('tabs', id);
+
                     }
                 }
+                //tab点击刷新
+                element.on('tab(tabs)', function(data){
+                    var src=$(".layui-tab-item.layui-show").find("iframe").attr("src");
+                    $(".layui-tab-item.layui-show").find("iframe").attr("src",src);
+                });
             })
         }
     });
@@ -95,7 +103,7 @@ layui.use(['layer','util','element'], function(){
     $(function() {
         setTimeout(function() {
             $("#sys5").click();
-        }, 100);
+        }, 3000);
     });
 
 });

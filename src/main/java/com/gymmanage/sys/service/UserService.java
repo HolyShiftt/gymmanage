@@ -5,9 +5,9 @@ import com.gymmanage.sys.entity.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> selectAll();
+    List<User> selectAll();
 
-    public void addUser(User user);
+    void addUser(User user);
 
     void updateUser(User user);
 

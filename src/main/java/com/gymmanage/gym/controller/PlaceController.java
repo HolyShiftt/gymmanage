@@ -1,7 +1,9 @@
 package com.gymmanage.gym.controller;
 
+
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.service.PlaceService;
+import com.gymmanage.utils.LayuiPage;
 import com.gymmanage.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class PlaceController {
 
     @RequestMapping("/getAllPlace")
     @ResponseBody
-    public Table getAllPlace(Integer kindId){
+    public Table getAllPlace(Integer kindId, LayuiPage layuiPage){
         int length = placeService.getAllPlace(kindId).size();
         return Table.success(Long.valueOf(length),placeService.getAllPlace(kindId));
     }

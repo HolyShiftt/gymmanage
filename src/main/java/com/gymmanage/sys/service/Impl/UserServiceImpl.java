@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectAll() {
-        return null;
+        return userMapper.selectAll();
     }
 
     @Override
     public void addUser(User user) {
-
+        userMapper.addUser(user);
     }
 
     @Override

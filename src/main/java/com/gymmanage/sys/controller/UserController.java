@@ -1,8 +1,11 @@
 package com.gymmanage.sys.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.sys.service.UserService;
 import com.gymmanage.utils.AjaxRes;
+import com.gymmanage.utils.LayuiPage;
 import com.gymmanage.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("user")
@@ -19,7 +23,12 @@ public class UserController {
 
     @RequestMapping("/userPage")
     public String user(){
-        return "/user";
+        return "/sys/user";
+    }
+
+    @RequestMapping("/userAddPage")
+    public String userAdd(){
+        return "/sys/userAdd";
     }
 
     // 用户登录检查
@@ -60,9 +69,10 @@ public class UserController {
 
     @RequestMapping("/userList")
     @ResponseBody
-    public Table userList(){
-        int length = userService.selectAll().size();
-        return Table.success(Long.valueOf(length),userService.selectAll());
+    public Table userList(LayuiPage layuiPage){
+        Page<?> page = PageHelper.startPage(layuiPage.getPage(), layuiPage.getLimit());
+        List<User> users = userService.selectAll();
+        return Table.success(Long.valueOf(page.getTotal()),users);
     }
 
     @RequestMapping("/userAdd")

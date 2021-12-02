@@ -8,12 +8,18 @@
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
-    <result column="jop" property="job" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
     <result column="job_time" property="jobTime" jdbcType="TIMESTAMP" />
-    <result column="state" property="state" jdbcType="BIT" />
   </resultMap>
+    <insert id="addUser">
+      insert into sys_user(`username`, `name`,tel, id_number,pwd,job_time,job)
+        values (#{username},#{name},#{tel}, #{idNumber},#{pwd},#{jobTime},#{job})
+    </insert>
 
-  <select id="getPwd" resultType="java.lang.String">
+    <select id="getPwd" resultType="java.lang.String">
     select pwd from sys_user where username = #{username}
   </select>
+    <select id="selectAll" resultType="com.gymmanage.sys.entity.User">
+      select * from sys_user
+    </select>
 </mapper>

@@ -9,4 +9,8 @@ import java.util.List;
 public interface UserMapper {
 
     String getPwd(String username);
+
+    List<User> selectAll();
+
+    void addUser(User user);
 }

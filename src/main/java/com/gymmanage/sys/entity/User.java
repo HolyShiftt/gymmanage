@@ -24,7 +24,5 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date jobTime;
 
-    private boolean state;
-
     private String job;
 }
