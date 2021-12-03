@@ -7,23 +7,26 @@
     <result column="kind_id" property="kindId" jdbcType="INTEGER" />
     <result column="kindName" property="kindName" jdbcType="INTEGER" />
     <result column="size" property="size" jdbcType="VARCHAR" />
-    <result column="manager_id" property="managerId" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
   </resultMap>
   <select id="getAllPlace" resultType="com.gymmanage.gym.entity.Place">
-    select p.*, p.manager_id as managerId, p.kind_id as kindId,
-    k.name as kindName, u.name as managerName from gym_place p
+    select p.*, u.name as managerName ,p.kind_id as kindId,
+    k.name as kindName from gym_place p
     left join gym_place_kind k on p.kind_id = k.id
-    left join sys_user u on p.manager_id = u.id
+    left join sys_role r on r.place = k.id
+    left join sys_user u on r.id = u.role
     <where>
+      and r.is_admin=1
       <if test="kindId != null and kindId != ''">
         and kind_id = #{kindId}
       </if>
     </where>
   </select>
   <select id="getAllPlaceKind" resultType="com.gymmanage.gym.entity.PlaceKind">
-    select k.id, k.name, u.name as managerName from gym_place_kind k
-    left join sys_user u on k.manager_id = u.id
+    select k.id, k.name ,u.name as managerName from gym_place_kind k
+    left join sys_role r on r.place = k.id
+		left join sys_user u on r.id = u.role
+		where r.is_admin=1
   </select>
 </mapper>

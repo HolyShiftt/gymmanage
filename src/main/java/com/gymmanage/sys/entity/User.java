@@ -22,7 +22,7 @@ public class User {
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date jobTime;
+    private Date roleTime;
 
-    private String job;
+    private String role;
 }

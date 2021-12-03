@@ -26,15 +26,26 @@ layui.use(['layer', 'form','laydate'], function () {
         }
     })
 
+    // 获取该行数据
+    $.ajax('/user/getOne', {
+        async : false,
+        data : {
+            id : $('#id').val()
+        },
+        success : function(d) {
+            form.val("myForm", d);
+        }
+    });
+
     // 渲染表单
     form.render();
 
     // 表单的提交事件
     form.on('submit(formDemo)', function(data) {
         layer.load();
-        $.post('/user/userAdd', data.field, function(d) {
+        $.post('/user/userUpdate', data.field, function(d) {
             if (d.success) {
-                layer.msg("添加成功", {
+                layer.msg(d.msg, {
                     icon : 6,
                     time : 2000
                 }, function() {

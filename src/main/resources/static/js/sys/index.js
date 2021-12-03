@@ -4,6 +4,8 @@ layui.use(['layer','util','element'], function(){
         ,element = layui.element
         ,$ = layui.jquery;
 
+    layer.load(0,{time:3000});
+
     // 获取用户信息
     $.ajax({
         url:"/user/getUser",

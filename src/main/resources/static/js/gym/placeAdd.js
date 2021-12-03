@@ -6,7 +6,7 @@ layui.use([ 'layer', 'form','xmSelect' ], function() {
     // 表单的提交事件
     form.on('submit(formDemo)', function(data) {
         layer.load();
-        $.post(webRoot + '/busClient/add', data.field, function(d) {
+        $.post('/busClient/add', data.field, function(d) {
             if (d.code == 0) {
                 layer.msg("添加成功", {
                     icon : 6,

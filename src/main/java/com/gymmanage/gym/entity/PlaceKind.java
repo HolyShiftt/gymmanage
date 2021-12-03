@@ -11,7 +11,5 @@ public class PlaceKind {
 
     private String name;
 
-    private Integer managerId;
-
     private String managerName;
 }

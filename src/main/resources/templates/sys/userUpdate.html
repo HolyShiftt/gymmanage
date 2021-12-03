@@ -5,12 +5,12 @@
     <title>用户添加</title>
     <link rel="stylesheet" href="/js/layui/css/layui.css">
 </head>
-<body>
 <body style="margin: 10px">
 <div class="layer_self_wrap">
     <form class="layui-form" lay-filter="myForm" style="margin-top: 20px">
         <div style="padding-right:50px">
             <div class="layui-form-item">
+                <input type="text" name="id" id="id" style="display: none">
                 <label class="layui-form-label">用户名<span style="color: red">*</span></label>
                 <div class="layui-input-block">
                     <input type="text" name="username" autocomplete="off" class="layui-input" lay-verify="required">
@@ -21,13 +21,6 @@
                 <div class="layui-input-block">
                     <input type="text" name="name" autocomplete="off" class="layui-input" lay-verify="required">
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
-                <div class="layui-input-block">
-                    <input type="password" name="pwd" autocomplete="off" class="layui-input" placeholder="默认密码为：654321">
-                </div>
-
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">电话号码</label>
@@ -66,7 +59,7 @@
 </div>
 
 <script src="/js/layui/layui.js"></script>
-<script src="/js/sys/userAdd.js"></script>
+<script src="/js/sys/userUpdate.js"></script>
 
 </body>
 </html>

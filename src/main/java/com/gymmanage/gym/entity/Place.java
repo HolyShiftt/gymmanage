@@ -20,8 +20,6 @@ public class Place {
 
     private String size;
 
-    private Integer managerId;
-
     private String managerName;
 
     private String price;
