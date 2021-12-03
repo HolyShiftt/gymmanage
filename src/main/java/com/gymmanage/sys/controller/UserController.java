@@ -52,9 +52,11 @@ public class UserController {
         boolean res = userService.checkPwd(username, base64en.encode(md5.digest(pwd.getBytes("utf-8"))));
         ajaxRes.setSuccess(res);
         if (res){
+            ajaxRes.setSuccess(true);
             ajaxRes.setMsg("登录成功");
             session.setAttribute("username",username);
         }else {
+            ajaxRes.setSuccess(false);
             ajaxRes.setMsg("登录失败");
         }
         return ajaxRes;
