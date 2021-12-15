@@ -4,7 +4,7 @@ import com.gymmanage.sys.entity.Menu;
 import java.util.List;
 
 public interface MenuService {
-    List<Menu> selectAll();
+    List<Menu> selectAll(Integer pid);
 
     List<Menu> getMenuTree();
 

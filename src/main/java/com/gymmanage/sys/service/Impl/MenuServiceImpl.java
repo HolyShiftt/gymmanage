@@ -14,8 +14,8 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuMapper;
 
     @Override
-    public List<Menu> selectAll() {
-        return menuMapper.selectAll();
+    public List<Menu> selectAll(Integer pid) {
+        return menuMapper.selectAll(pid);
     }
 
     @Override

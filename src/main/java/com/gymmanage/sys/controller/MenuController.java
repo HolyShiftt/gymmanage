@@ -1,5 +1,6 @@
 package com.gymmanage.sys.controller;
 
+import com.gymmanage.sys.entity.Menu;
 import com.gymmanage.sys.service.MenuService;
 import com.gymmanage.utils.AjaxRes;
 import com.gymmanage.utils.Table;
@@ -17,15 +18,19 @@ public class MenuController {
     private MenuService menuService;
 
     @RequestMapping("/menuPage")
-    public String go(){
-        return "menu";
+    public String menuPage(){
+        return "/sys/menu";
     }
 
     @RequestMapping("/menuList")
     @ResponseBody
-    public Table menuList(){
-        int length = menuService.selectAll().size();
-        return Table.success(Long.valueOf(length),menuService.selectAll());
+    public Table menuList(Integer pid){
+        if (pid == null) {
+            pid = 0;
+        }
+        List<Menu> menus = menuService.selectAll(pid);
+        int length = menus.size();
+        return Table.success(Long.valueOf(length),menus);
     }
 
     @RequestMapping("/menuTree")

@@ -13,7 +13,7 @@ public interface MenuMapper {
 
     Menu selectByPrimaryKey(Integer id);
 
-    List<Menu> selectAll();
+    List<Menu> selectAll(Integer pid);
 
     int updateByPrimaryKey(Menu record);
 
