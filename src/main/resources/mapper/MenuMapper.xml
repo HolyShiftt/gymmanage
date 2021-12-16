@@ -39,7 +39,11 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select *
     from sys_menu
-    where parent_id= #{pid,jdbcType=INTEGER}
+    <where>
+      <if test="pid != null">
+        parent_id= #{pid,jdbcType=INTEGER}
+      </if>
+    </where>
   </select>
   <select id="menuTree" resultMap="BaseResultMap">
     select * from sys_menu

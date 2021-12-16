@@ -6,7 +6,7 @@ layui.use('table', function () {
     // 父菜单表格
     var pMenuTable = table.render({
         elem: '#pMenuTable'
-        ,url:'/menu/menuList'
+        ,url:'/menu/menuList?pid=0'
         ,cols: [[
             {field:'title', title: '标题'}
         ]]

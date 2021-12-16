@@ -25,9 +25,6 @@ public class MenuController {
     @RequestMapping("/menuList")
     @ResponseBody
     public Table menuList(Integer pid){
-        if (pid == null) {
-            pid = 0;
-        }
         List<Menu> menus = menuService.selectAll(pid);
         int length = menus.size();
         return Table.success(Long.valueOf(length),menus);
