@@ -50,5 +50,6 @@
     <select id="checkRole" resultType="java.lang.String">
         select `name` from sys_user where role = #{roleId}
         and 1 = (select is_admin from sys_role where id = #{roleId} and place !=0)
+        and id != #{id}
     </select>
 </mapper>

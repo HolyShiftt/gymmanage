@@ -23,5 +23,5 @@ public interface UserMapper {
     User getOne(Integer id);
 
     // 一个管理只能由一个人来担任，判断是否存在该管理
-    String checkRole(String roleId);
+    String checkRole(String roleId,Integer id);
 }

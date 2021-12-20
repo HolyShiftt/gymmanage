@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AjaxRes updateUser(User user) {
         AjaxRes ajaxRes = new AjaxRes();
-        String admin = userMapper.checkRole(user.getRole());
+        String admin = userMapper.checkRole(user.getRole(),user.getId());
         if(admin==null){
             userMapper.updateUser(user);
             ajaxRes.setMsg("更新成功");
