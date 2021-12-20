@@ -11,16 +11,16 @@ public class IndexController {
     @RequestMapping("/")
     public String toPage(HttpSession session) {
         if (null != session.getAttribute("username")){
-            return "/sys/index";
+            return "/index";
         }else{
-            return "/sys/login";
+            return "/login";
         }
 
     }
 
     @RequestMapping("/index")
     public String toIndex() {
-        return "/sys/index";
+        return "/index";
     }
 
 

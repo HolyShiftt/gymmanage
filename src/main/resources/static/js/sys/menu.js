@@ -9,6 +9,7 @@ layui.use('table', function () {
         ,url:'/menu/menuList?pid=0'
         ,cols: [[
             {field:'title', title: '标题'}
+            , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
         ]]
     });
 
@@ -51,7 +52,7 @@ layui.use('table', function () {
                                 userTable.reload()//保存成功刷新
                             });
                         } else {
-                            layer.alert(d.msg || d.message)
+                            layer.alert(d.msg)
                         }
                     }
                 });

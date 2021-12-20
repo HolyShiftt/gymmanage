@@ -19,4 +19,6 @@ public interface UserService {
     boolean checkPwd(String username, String pwd);
 
     User getOne(Integer id);
+
+    AjaxRes passwordUpdate(String username, String pwd) throws NoSuchAlgorithmException, UnsupportedEncodingException;
 }

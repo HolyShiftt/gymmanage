@@ -83,4 +83,22 @@ public class UserServiceImpl implements UserService {
     public User getOne(Integer id) {
         return userMapper.getOne(id);
     }
+
+    @Override
+    public AjaxRes passwordUpdate(String username, String pwd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        AjaxRes ajaxRes = new AjaxRes();
+        // 密码加密
+        MessageDigest md5= MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+        String encode = base64en.encode(md5.digest(pwd.getBytes("utf-8")));
+        try {
+            userMapper.passwordUpdate(username,encode);
+            ajaxRes.setMsg("密码修改成功,请重新登录");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("密码修改失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
+    }
 }

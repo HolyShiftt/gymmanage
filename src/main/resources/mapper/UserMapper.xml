@@ -25,6 +25,11 @@
         role = #{role}
         where id = #{id}
     </update>
+    <update id="passwordUpdate">
+        update sys_user
+        set pwd = #{pwd}
+        where username = #{username}
+    </update>
     <delete id="deleteUser">
         delete from sys_user
         where id = #{id}

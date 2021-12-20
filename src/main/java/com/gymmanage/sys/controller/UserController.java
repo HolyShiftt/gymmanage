@@ -35,6 +35,11 @@ public class UserController {
         return "/sys/userAdd";
     }
 
+    @RequestMapping("/updPwd")
+    public String updPwd(){
+        return "/sys/updPwd";
+    }
+
     @RequestMapping("/userUpdatePage")
     public String userUpdate(Integer id, HttpSession session){
         session.setAttribute("updateUserId",id);
@@ -52,11 +57,9 @@ public class UserController {
         boolean res = userService.checkPwd(username, base64en.encode(md5.digest(pwd.getBytes("utf-8"))));
         ajaxRes.setSuccess(res);
         if (res){
-            ajaxRes.setSuccess(true);
             ajaxRes.setMsg("登录成功");
             session.setAttribute("username",username);
         }else {
-            ajaxRes.setSuccess(false);
             ajaxRes.setMsg("登录失败");
         }
         return ajaxRes;
@@ -122,4 +125,22 @@ public class UserController {
     public User getOne(HttpSession session){
         return userService.getOne((Integer)session.getAttribute("updateUserId"));
     }
+
+    @RequestMapping("/passwordUpdate")
+    @ResponseBody
+    public AjaxRes passwordUpdate(String pwd1,String pwd2,HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        AjaxRes ajaxRes = new AjaxRes();
+        String username = (String) session.getAttribute("username");
+        MessageDigest md5= MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+        boolean res = userService.checkPwd(username, base64en.encode(md5.digest(pwd1.getBytes("utf-8"))));
+        if (!res){
+            ajaxRes.setMsg("原密码错误");
+            ajaxRes.setSuccess(false);
+        }else{
+            ajaxRes = userService.passwordUpdate(username, pwd2);
+        }
+        return ajaxRes;
+    }
+
 }
