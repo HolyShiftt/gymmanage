@@ -47,7 +47,7 @@ layui.use('table', function () {
                                 userTable.reload()//保存成功刷新
                             });
                         } else {
-                            layer.alert(d.msg || d.message)
+                            layer.alert(d.msg)
                         }
                     }
                 });
