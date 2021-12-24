@@ -1,7 +1,7 @@
 .wrap{
     width: 100%;
     height: 100%;
-    background: url("/img/login/login_background.jpg") no-repeat;
+    background: url("/img/login/login_newback.jpg") no-repeat;
     background-size: cover;
     opacity: 0.75;
 }
@@ -86,4 +86,5 @@ img{
 .imgStyle{
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
 }
