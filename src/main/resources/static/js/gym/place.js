@@ -23,7 +23,7 @@ layui.use('table', function(){
             ,{field:'kindName', title: '类型'}
             ,{field:'size', title: '大小'}
             ,{field:'managerName', title: '管理人员'}
-            ,{field:'price', title: '消费说明'}
+            ,{field:'price', title: '消费说明',templet: function (data) {return data.price+"元/小时"}}
             ,{field:'state', title: '场馆状态',templet: function (data) {
                 switch (data.state) {
                     case 0: return "空闲";
