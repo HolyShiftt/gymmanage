@@ -32,8 +32,10 @@ layui.use('table', function(){
                     case 3: return "暂停使用";
                 }
             }}
+            ,{fixed: 'right', title: '操作', toolbar: '#barDemo'}
         ]]
         ,page:true
+
     });
 
     // 场馆类型点击事件
