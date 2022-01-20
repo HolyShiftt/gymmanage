@@ -1,12 +1,13 @@
 var placeTbale;
 layui.use('table', function(){
     var table = layui.table,
+        form = layui.form ,
         $ = layui.jquery;
 
     // 场地类型表格
     var kindTbale = table.render({
         elem: '#kindTable'
-        ,url:'/gym/getAllPlaceKind'
+        ,url:'/place/getAllPlaceKind'
         ,cols: [[
             {field:'name', title: '类型'}
             ,{field:'managerName', title: '管理人员'}
@@ -17,7 +18,7 @@ layui.use('table', function(){
     // 场地详情表格
     var placeTable = table.render({
         elem: '#placeTable'
-        ,url:'/gym/getAllPlace'
+        ,url:'/place/getAllPlace'
         ,cols: [[
             {field:'name', title: '场馆名'}
             ,{field:'kindName', title: '类型'}
@@ -38,6 +39,21 @@ layui.use('table', function(){
 
     });
 
+    // 场地类型管理员下拉列表
+    $.ajax({
+        url:'/user/freeUser',
+        async : false,
+        success : function(d) {
+            $.each(d, function (index, item) {
+                console.log(item)
+                $('#kindManager').append(new Option(item.name, item.id));
+            });
+        }
+    })
+
+    // 渲染表单
+    form.render();
+
     // 场馆类型点击事件
     table.on('row(kindTable)', function(obj){
         placeTable.reload({
@@ -52,13 +68,27 @@ layui.use('table', function(){
         });
     })
 
+    // 添加场馆类型
+    $("#addKindBtn").click(function () {
+        layer.open({
+            title : '添加',
+            type : 1,
+            area : [ '400px', '300px' ],
+            content : $("#addKind")
+        })
+    })
+
     // 添加场馆
-    $("#addBtn").click(function () {
+    $("#addPlaceBtn").click(function () {
         layer.open({
             title : '添加',
             type : 2,
             area : [ '600px', '530px' ],
-            content : '/gym/placeAdd'
+            content : '/place/placeAdd'
         })
+    })
+
+    $(".close").click(function (){
+        layer.closeAll();
     })
 });

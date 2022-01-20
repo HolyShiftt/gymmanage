@@ -101,4 +101,9 @@ public class UserServiceImpl implements UserService {
         }
         return ajaxRes;
     }
+
+    @Override
+    public List<User> freeUser() {
+        return userMapper.freeUser();
+    }
 }

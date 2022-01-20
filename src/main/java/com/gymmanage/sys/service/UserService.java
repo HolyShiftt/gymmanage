@@ -21,4 +21,6 @@ public interface UserService {
     User getOne(Integer id);
 
     AjaxRes passwordUpdate(String username, String pwd) throws NoSuchAlgorithmException, UnsupportedEncodingException;
+
+    List<User> freeUser();
 }

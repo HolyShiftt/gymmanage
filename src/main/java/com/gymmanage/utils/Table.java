@@ -30,6 +30,9 @@ public class Table implements Serializable {
     public static Table success(Long count,Object data){
         return newInstance(SUCCESS_CODE,SUCCESS_MSG,count,data);
     }
+    public static Table success(Object data){
+        return newInstance(SUCCESS_CODE,SUCCESS_MSG, (long) 0,data);
+    }
 
     private Integer code;
     private String msg;

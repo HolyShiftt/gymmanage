@@ -57,4 +57,8 @@
         and 1 = (select is_admin from sys_role where id = #{roleId} and place !=0)
         and id != #{id}
     </select>
+    <select id="freeUser" resultType="com.gymmanage.sys.entity.User">
+        select * from sys_user
+        where role = 0;
+    </select>
 </mapper>

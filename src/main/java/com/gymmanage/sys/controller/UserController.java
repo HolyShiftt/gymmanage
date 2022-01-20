@@ -143,4 +143,11 @@ public class UserController {
         return ajaxRes;
     }
 
+    @RequestMapping("/freeUser")
+    @ResponseBody
+    public List<User> freeUser(){
+        return userService.freeUser();
+    }
+
+
 }

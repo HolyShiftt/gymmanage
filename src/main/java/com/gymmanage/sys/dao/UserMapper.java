@@ -27,4 +27,6 @@ public interface UserMapper {
     String checkRole(String roleId,Integer id);
 
     void passwordUpdate(String username, String pwd);
+
+    List<User> freeUser();
 }
