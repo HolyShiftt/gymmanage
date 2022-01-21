@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.gymmanage.sys.dao.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.gymmanage.sys.entity.Role" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-  </resultMap>
-    <select id="roleList" resultType="com.gymmanage.sys.entity.Role">
-        select * from sys_role
+<mapper namespace="com.gymmanage.gym.dao.BookMapper">
+    <insert id="apply">
+        insert into gym_book (start_time,end_time,place_id,name) values
+        (#{startTime},#{endTime},#{placeId},#{name})
+    </insert>
+    <select id="selectAll" resultType="com.gymmanage.gym.entity.Book">
+        select b.*, p.name as placeName
+        from gym_book b
+        left join gym_place p
+        on b.place_id = p.id
     </select>
+    <update id="updPlace">
+    update gym_place set state = 2 where id = #{id}
+    </update>
 
 </mapper>

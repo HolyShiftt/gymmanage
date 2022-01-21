@@ -1,6 +1,7 @@
 package com.gymmanage.gym.controller;
 
 
+import com.gymmanage.gym.entity.Book;
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.gym.service.PlaceService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -65,6 +67,5 @@ public class PlaceController {
     public AjaxRes placeAdd(Place place){
         return placeService.placeAdd(place);
     }
-    
 
 }

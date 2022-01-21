@@ -1,6 +1,7 @@
 package com.gymmanage.gym.service.Impl;
 
 import com.gymmanage.gym.dao.PlaceMapper;
+import com.gymmanage.gym.entity.Book;
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.gym.service.PlaceService;
@@ -61,4 +62,6 @@ public class PlaceServiceImpl implements PlaceService {
         }
         return ajaxRes;
     }
+
+
 }

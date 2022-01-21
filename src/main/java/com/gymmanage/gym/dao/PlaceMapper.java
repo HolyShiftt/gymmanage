@@ -1,5 +1,6 @@
 package com.gymmanage.gym.dao;
 
+import com.gymmanage.gym.entity.Book;
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import org.apache.ibatis.annotations.Mapper;

@@ -1,5 +1,6 @@
 package com.gymmanage.gym.service;
 
+import com.gymmanage.gym.entity.Book;
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.utils.AjaxRes;
@@ -17,4 +18,6 @@ public interface PlaceService {
     List<PlaceKind> kindList();
 
     AjaxRes placeAdd(Place place);
+
+
 }

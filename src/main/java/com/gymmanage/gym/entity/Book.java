@@ -25,9 +25,5 @@ public class Book {
 
     private String placeName;
 
-    private Integer userId;
-
-    private String userName;
-
-    private Integer clientId;
+    private String name;
 }

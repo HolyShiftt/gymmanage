@@ -81,12 +81,33 @@ layui.use('table', function(){
         layer.load();
         $.post('/place/kindAdd', data.field, function(d) {
             if (d.success) {
-                layer.msg("添加成功", {
+                layer.msg(d.msg, {
                     icon : 6,
                     time : 2000
                 }, function() {
                     layer.closeAll();
                     kindTable.reload();
+                })
+            } else {
+                layer.alert(d.msg)
+                layer.closeAll('loading');
+            }
+        });
+        return false;
+    });
+    // 预约提交
+    form.on('submit(sub)', function(data) {
+        data.field.startTime = layui.util.toDateString(data.field.startTime, 'yyyy-MM-dd HH:mm')
+        data.field.endTime = layui.util.toDateString(data.field.endTime, 'yyyy-MM-dd HH:mm')
+        layer.load();
+        $.post('/book/apply', data.field, function(d) {
+            if (d.success) {
+                layer.msg(d.msg, {
+                    icon : 6,
+                    time : 2000
+                }, function() {
+                    layer.closeAll();
+                    placeTable.reload()
                 })
             } else {
                 layer.alert(d.msg)
@@ -106,8 +127,43 @@ layui.use('table', function(){
         })
     })
 
+    table.on('tool(placeTable)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'apply'){
+            apply(data.id,data.state);
+        }else if (obj.event === 'edit'){
+            console.log('edit')
+        }
+    })
 
     $(".close").click(function (){
         layer.closeAll();
     })
+
+    function apply(id,state) {
+        if (state == 1){
+            layer.msg("正在使用中，无法预约", {
+                icon : 2,
+                time : 2000
+            })
+        }else if(state == 2){
+            layer.msg("已预约，无需重复预约", {
+                icon : 1,
+                time : 2000
+            })
+        }else if (state == 3){
+            layer.msg("暂停使用，无法预约", {
+                icon : 2,
+                time : 2000
+            })
+        }else{
+            $("#placeId").val(id);
+            layer.open({
+                title : '预约',
+                type : 1,
+                area : [ '400px', '300px' ],
+                content : $("#apply")
+            })
+        }
+    }
 });

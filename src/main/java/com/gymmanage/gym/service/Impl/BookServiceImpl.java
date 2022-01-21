@@ -7,6 +7,7 @@ import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.gym.service.BookService;
 import com.gymmanage.gym.service.PlaceService;
+import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,20 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> selectAll() {
         return bookMapper.selectAll();
+    }
+
+    @Override
+    public AjaxRes apply(Book book) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            bookMapper.apply(book);
+            bookMapper.updPlace(book.getPlaceId());
+            ajaxRes.setMsg("预约成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("预约失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
     }
 }

@@ -11,4 +11,5 @@ import java.util.List;
 public interface BookService {
     List<Book> selectAll();
 
+    AjaxRes apply(Book book);
 }
