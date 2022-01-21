@@ -10,11 +10,20 @@
     <result column="price" property="price" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
   </resultMap>
+  <insert id="kindAdd">
+    insert into gym_place_kind (name) values (#{kind})
+  </insert>
+  <insert id="kindAddManager">
+    insert into sys_role (name,place,is_admin,kind) values (#{kind},0,1,#{kindId})
+  </insert>
+  <update id="kindAddUserRole">
+    update sys_user set role = #{role} where id = #{kindManager}
+  </update>
   <select id="getAllPlace" resultType="com.gymmanage.gym.entity.Place">
     select p.*, u.name as managerName ,p.kind_id as kindId,
     k.name as kindName from gym_place p
     left join gym_place_kind k on p.kind_id = k.id
-    left join sys_role r on r.place = k.id
+    left join sys_role r on r.kind = k.id
     left join sys_user u on r.id = u.role
     <where>
       and r.is_admin=1
@@ -25,8 +34,14 @@
   </select>
   <select id="getAllPlaceKind" resultType="com.gymmanage.gym.entity.PlaceKind">
     select k.id, k.name ,u.name as managerName from gym_place_kind k
-    left join sys_role r on r.place = k.id
+    left join sys_role r on r.kind = k.id
 		left join sys_user u on r.id = u.role
 		where r.is_admin=1
+  </select>
+  <select id="kindMaxId" resultType="java.lang.Integer">
+    select max(id) from gym_place_kind
+  </select>
+  <select id="roleNewId" resultType="java.lang.Integer">
+    select max(id) from sys_role
   </select>
 </mapper>

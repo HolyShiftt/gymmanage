@@ -45,7 +45,6 @@ layui.use('table', function(){
         async : false,
         success : function(d) {
             $.each(d, function (index, item) {
-                console.log(item)
                 $('#kindManager').append(new Option(item.name, item.id));
             });
         }
@@ -76,7 +75,26 @@ layui.use('table', function(){
             area : [ '400px', '300px' ],
             content : $("#addKind")
         })
-    })
+    });
+    // 表单的提交事件
+    form.on('submit(formDemo)', function(data) {
+        layer.load();
+        $.post('/place/kindAdd', data.field, function(d) {
+            if (d.success) {
+                layer.msg("添加成功", {
+                    icon : 6,
+                    time : 2000
+                }, function() {
+                    layer.closeAll();
+                    kindTbale.reload();
+                })
+            } else {
+                layer.alert(d.msg || d.message)
+                layer.closeAll('loading');
+            }
+        });
+        return false;
+    });
 
     // 添加场馆
     $("#addPlaceBtn").click(function () {
@@ -87,6 +105,7 @@ layui.use('table', function(){
             content : '/place/placeAdd'
         })
     })
+
 
     $(".close").click(function (){
         layer.closeAll();

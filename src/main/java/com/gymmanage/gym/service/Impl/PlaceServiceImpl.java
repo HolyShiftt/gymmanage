@@ -4,6 +4,7 @@ import com.gymmanage.gym.dao.PlaceMapper;
 import com.gymmanage.gym.entity.Place;
 import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.gym.service.PlaceService;
+import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,21 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public List<PlaceKind> getAllPlaceKind() {
         return placeMapper.getAllPlaceKind();
+    }
+
+    @Override
+    public AjaxRes kindAdd(String kind, Integer kindManager) {
+        AjaxRes ajaxRes = new AjaxRes();
+        placeMapper.kindAdd(kind);
+        int kindId = placeMapper.kindMaxId();
+        kind += "管理员";
+        placeMapper.kindAddManager(kind,kindId);
+        if (kindManager != null){
+            int role = placeMapper.roleNewId();
+            placeMapper.kindAddUserRole(kindManager,role);
+        }
+        ajaxRes.setMsg("添加成功");
+        ajaxRes.setSuccess(true);
+        return ajaxRes;
     }
 }

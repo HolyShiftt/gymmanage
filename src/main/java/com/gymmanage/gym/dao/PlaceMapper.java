@@ -12,4 +12,14 @@ public interface PlaceMapper {
     List<Place> getAllPlace(Integer kindId);
 
     List<PlaceKind> getAllPlaceKind();
+
+    int kindAdd(String kind);
+
+    int kindMaxId();
+
+    int kindAddManager(String kind, Integer kindId);
+
+    int roleNewId();
+
+    int kindAddUserRole(Integer kindManager, Integer role);
 }
