@@ -5,7 +5,7 @@ layui.use('table', function(){
         $ = layui.jquery;
 
     // 场地类型表格
-    var kindTbale = table.render({
+    var kindTable = table.render({
         elem: '#kindTable'
         ,url:'/place/getAllPlaceKind'
         ,cols: [[
@@ -16,7 +16,7 @@ layui.use('table', function(){
     });
 
     // 场地详情表格
-    var placeTable = table.render({
+    placeTable = table.render({
         elem: '#placeTable'
         ,url:'/place/getAllPlace'
         ,cols: [[
@@ -86,10 +86,10 @@ layui.use('table', function(){
                     time : 2000
                 }, function() {
                     layer.closeAll();
-                    kindTbale.reload();
+                    kindTable.reload();
                 })
             } else {
-                layer.alert(d.msg || d.message)
+                layer.alert(d.msg)
                 layer.closeAll('loading');
             }
         });
@@ -102,7 +102,7 @@ layui.use('table', function(){
             title : '添加',
             type : 2,
             area : [ '600px', '530px' ],
-            content : '/place/placeAdd'
+            content : '/place/placeAddPage'
         })
     })
 

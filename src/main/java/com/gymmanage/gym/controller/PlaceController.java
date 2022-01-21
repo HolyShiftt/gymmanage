@@ -2,6 +2,7 @@ package com.gymmanage.gym.controller;
 
 
 import com.gymmanage.gym.entity.Place;
+import com.gymmanage.gym.entity.PlaceKind;
 import com.gymmanage.gym.service.PlaceService;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.utils.AjaxRes;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Controller
 @RequestMapping("place")
@@ -27,8 +29,8 @@ public class PlaceController {
         return "/gym/place";
     }
 
-    @RequestMapping("/placeAdd")
-    public String placeAdd(){
+    @RequestMapping("/placeAddPage")
+    public String placeAddPage(){
         return "/gym/placeAdd";
     }
 
@@ -51,4 +53,18 @@ public class PlaceController {
     public AjaxRes kindAdd(String kind, Integer kindManager){
         return placeService.kindAdd(kind, kindManager);
     }
+
+    @RequestMapping("/kindList")
+    @ResponseBody
+    public List<PlaceKind> kindList(){
+        return placeService.kindList();
+    }
+
+    @RequestMapping("/placeAdd")
+    @ResponseBody
+    public AjaxRes placeAdd(Place place){
+        return placeService.placeAdd(place);
+    }
+    
+
 }

@@ -8,6 +8,7 @@ import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,6 +40,25 @@ public class PlaceServiceImpl implements PlaceService {
         }
         ajaxRes.setMsg("添加成功");
         ajaxRes.setSuccess(true);
+        return ajaxRes;
+    }
+
+    @Override
+    public List<PlaceKind> kindList() {
+        return placeMapper.kindList();
+    }
+
+    @Override
+    public AjaxRes placeAdd(Place place){
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            placeMapper.placeAdd(place);
+            ajaxRes.setMsg("保存成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("保存失败");
+            ajaxRes.setSuccess(false);
+        }
         return ajaxRes;
     }
 }

@@ -22,4 +22,8 @@ public interface PlaceMapper {
     int roleNewId();
 
     int kindAddUserRole(Integer kindManager, Integer role);
+
+    List<PlaceKind> kindList();
+
+    int placeAdd(Place place);
 }

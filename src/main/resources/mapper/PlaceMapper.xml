@@ -16,6 +16,9 @@
   <insert id="kindAddManager">
     insert into sys_role (name,place,is_admin,kind) values (#{kind},0,1,#{kindId})
   </insert>
+  <insert id="placeAdd">
+    insert into gym_place (name,kind_id,size,price) values (#{name},#{kindId},#{size},#{price})
+  </insert>
   <update id="kindAddUserRole">
     update sys_user set role = #{role} where id = #{kindManager}
   </update>
@@ -43,5 +46,8 @@
   </select>
   <select id="roleNewId" resultType="java.lang.Integer">
     select max(id) from sys_role
+  </select>
+  <select id="kindList" resultType="com.gymmanage.gym.entity.PlaceKind">
+    select * from gym_place_kind
   </select>
 </mapper>

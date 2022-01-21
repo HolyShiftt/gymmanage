@@ -13,4 +13,8 @@ public interface PlaceService {
     List<PlaceKind> getAllPlaceKind();
 
     AjaxRes kindAdd(String kind, Integer kindManager);
+
+    List<PlaceKind> kindList();
+
+    AjaxRes placeAdd(Place place);
 }
