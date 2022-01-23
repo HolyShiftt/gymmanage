@@ -21,7 +21,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectAll() {
-        return bookMapper.selectAll();
+        return bookMapper.selectAll("start_time");
     }
 
     @Override
@@ -37,5 +37,10 @@ public class BookServiceImpl implements BookService {
             ajaxRes.setSuccess(false);
         }
         return ajaxRes;
+    }
+
+    @Override
+    public Book getBookByPlaceId(Integer id) {
+        return bookMapper.getBookByPlaceId(id);
     }
 }

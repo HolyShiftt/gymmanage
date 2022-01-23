@@ -42,14 +42,18 @@ public class BookController {
 
     @RequestMapping("/apply")
     @ResponseBody
-    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd h:mm");
+    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime) {
         Book book = new Book();
-        book.setId(placeId);
+        book.setPlaceId(placeId);
         book.setName(name);
-        book.setStart_time(formatter.parse(startTime));
-        book.setEnd_time(formatter.parse(endTime));
+        book.setStartTime(startTime);
+        book.setEndTime(endTime);
         return bookService.apply(book);
     }
 
+    @RequestMapping("/getBookByPlaceId")
+    @ResponseBody
+    public Book getBookByPlaceId(Integer id){
+        return bookService.getBookByPlaceId(id);
+    }
 }

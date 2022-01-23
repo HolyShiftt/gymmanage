@@ -147,10 +147,24 @@ layui.use('table', function(){
                 time : 2000
             })
         }else if(state == 2){
-            layer.msg("已预约，无需重复预约", {
-                icon : 1,
-                time : 2000
+            $.ajax({
+                url:'/book/getBookByPlaceId',
+                data:{id:id},
+                success : function(d) {
+                    $("#placeId").val(id);
+                    $("#startTime").val(d.startTime.replace(" ","T"));
+                    $("#endTime").val(d.endTime.replace(" ","T"));
+                    $("#bookName").val(d.name);
+                    form.render();
+                    layer.open({
+                        title : '预约信息',
+                        type : 1,
+                        area : [ '400px', '300px' ],
+                        content : $("#apply")
+                    })
+                }
             })
+
         }else if (state == 3){
             layer.msg("暂停使用，无法预约", {
                 icon : 2,

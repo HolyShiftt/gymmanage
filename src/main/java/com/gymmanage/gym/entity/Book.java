@@ -15,11 +15,11 @@ public class Book {
 
     @JsonFormat(pattern = "yyyy-MM-dd h:mm",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd h:mm")
-    private Date start_time;
+    private String startTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd h:mm",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd h:mm")
-    private Date end_time;
+    private String endTime;
 
     private Integer placeId;
 

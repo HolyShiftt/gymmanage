@@ -7,9 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
-    List<Book> selectAll();
+    List<Book> selectAll(String Order);
 
     int updPlace(Integer id);
 
     int apply(Book book);
+
+    Book getBookByPlaceId(Integer id);
 }

@@ -6,10 +6,19 @@
         (#{startTime},#{endTime},#{placeId},#{name})
     </insert>
     <select id="selectAll" resultType="com.gymmanage.gym.entity.Book">
-        select b.*, p.name as placeName
+        select b.*,b.start_time as startTime, b.end_time as endTime, p.name as placeName
         from gym_book b
         left join gym_place p
         on b.place_id = p.id
+        where b.is_cancel = 0
+        <if test="order != null and order != ''">
+            order by b.${order}
+        </if>
+    </select>
+    <select id="getBookByPlaceId" resultType="com.gymmanage.gym.entity.Book">
+        select *, start_time as startTime, end_time as endTime
+        from gym_book
+        where place_id = #{id}
     </select>
     <update id="updPlace">
     update gym_place set state = 2 where id = #{id}
