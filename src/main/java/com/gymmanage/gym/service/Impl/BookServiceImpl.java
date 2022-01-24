@@ -40,7 +40,36 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public AjaxRes editApply(Book book) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            bookMapper.editApply(book);
+            ajaxRes.setMsg("修改成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("修改失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
+    }
+
+    @Override
     public Book getBookByPlaceId(Integer id) {
         return bookMapper.getBookByPlaceId(id);
+    }
+
+    @Override
+    public AjaxRes cancelApply(Integer id, Integer placeId) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            bookMapper.cancelApply1(id);
+            bookMapper.cancelApply2(placeId);
+            ajaxRes.setMsg("取消成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("取消失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
     }
 }

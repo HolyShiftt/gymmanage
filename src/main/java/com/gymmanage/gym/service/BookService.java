@@ -13,5 +13,9 @@ public interface BookService {
 
     AjaxRes apply(Book book);
 
+    AjaxRes editApply(Book book);
+
     Book getBookByPlaceId(Integer id);
+
+    AjaxRes cancelApply(Integer id,Integer placeId);
 }

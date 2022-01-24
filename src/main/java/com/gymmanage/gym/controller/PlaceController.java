@@ -36,6 +36,12 @@ public class PlaceController {
         return "/gym/placeAdd";
     }
 
+    @RequestMapping("/placeUpdatePage")
+    public String placeUpdatePage(Integer id, HttpSession session){
+        session.setAttribute("updatePlaceId",id);
+        return "/gym/placeUpdate";
+    }
+
     @RequestMapping("/getAllPlace")
     @ResponseBody
     public Table getAllPlace(Integer kindId, LayuiPage layuiPage){
@@ -62,10 +68,23 @@ public class PlaceController {
         return placeService.kindList();
     }
 
+    @RequestMapping("/getOne")
+    @ResponseBody
+    public Place getOne(HttpSession session){
+        return placeService.getOne((Integer)session.getAttribute("updatePlaceId"));
+    }
+
     @RequestMapping("/placeAdd")
     @ResponseBody
     public AjaxRes placeAdd(Place place){
         return placeService.placeAdd(place);
+    }
+
+    @RequestMapping("/placeUpdate")
+    @ResponseBody
+    public AjaxRes placeUpdate(Place place,HttpSession session){
+        place.setId((Integer)session.getAttribute("updatePlaceId"));
+        return placeService.placeUpdate(place);
     }
 
 }

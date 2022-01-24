@@ -63,5 +63,24 @@ public class PlaceServiceImpl implements PlaceService {
         return ajaxRes;
     }
 
+    @Override
+    public AjaxRes placeUpdate(Place place) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            placeMapper.placeUpdate(place);
+            ajaxRes.setMsg("更新成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("更新失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
+    }
+
+    @Override
+    public Place getOne(Integer id) {
+        return placeMapper.getOne(id);
+    }
+
 
 }

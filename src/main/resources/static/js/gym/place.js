@@ -95,6 +95,7 @@ layui.use('table', function(){
         });
         return false;
     });
+
     // 预约提交
     form.on('submit(sub)', function(data) {
         data.field.startTime = layui.util.toDateString(data.field.startTime, 'yyyy-MM-dd HH:mm')
@@ -122,7 +123,7 @@ layui.use('table', function(){
         layer.open({
             title : '添加',
             type : 2,
-            area : [ '600px', '530px' ],
+            area : [ '500px', '400px' ],
             content : '/place/placeAddPage'
         })
     })
@@ -132,13 +133,19 @@ layui.use('table', function(){
         if (obj.event === 'apply'){
             apply(data.id,data.state);
         }else if (obj.event === 'edit'){
-            console.log('edit')
+            layer.open({
+                title : '编辑',
+                type : 2,
+                area : [ '500px', '400px' ],
+                content : '/place/placeUpdatePage?id='+data.id
+            })
         }
     })
 
     $(".close").click(function (){
         layer.closeAll();
     })
+
 
     function apply(id,state) {
         if (state == 1){
@@ -147,11 +154,13 @@ layui.use('table', function(){
                 time : 2000
             })
         }else if(state == 2){
+            $("#placeId").val(id);
+            $("#cancel").css("display","inline")
             $.ajax({
                 url:'/book/getBookByPlaceId',
                 data:{id:id},
                 success : function(d) {
-                    $("#placeId").val(id);
+                    $("#id").val(d.id);
                     $("#startTime").val(d.startTime.replace(" ","T"));
                     $("#endTime").val(d.endTime.replace(" ","T"));
                     $("#bookName").val(d.name);
@@ -172,6 +181,11 @@ layui.use('table', function(){
             })
         }else{
             $("#placeId").val(id);
+            $("#id").val("");
+            $("#startTime").val("");
+            $("#endTime").val("");
+            $("#bookName").val("");
+            $("#cancel").css("display","none")
             layer.open({
                 title : '预约',
                 type : 1,
@@ -180,4 +194,25 @@ layui.use('table', function(){
             })
         }
     }
+
+    $("#cancel").click(function () {
+        layer.confirm('你确定要取消预约吗?', function(index){
+            $.post('/book/cancelApply', {id:$("#id").val(),placeId:$("#placeId").val()}, function(d) {
+                if (d.success) {
+                    layer.msg(d.msg, {
+                        icon : 6,
+                        time : 2000
+                    }, function() {
+
+                    })
+                } else {
+                    layer.alert(d.msg)
+                    layer.closeAll('loading');
+                }
+            });
+            layer.closeAll();
+            placeTable.reload()
+        });
+        return false;
+    })
 });

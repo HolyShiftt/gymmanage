@@ -13,5 +13,11 @@ public interface BookMapper {
 
     int apply(Book book);
 
+    int editApply(Book book);
+
     Book getBookByPlaceId(Integer id);
+
+    int cancelApply1(Integer id);
+
+    int cancelApply2(Integer placeId);
 }

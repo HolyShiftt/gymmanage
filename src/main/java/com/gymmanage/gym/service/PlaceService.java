@@ -19,5 +19,8 @@ public interface PlaceService {
 
     AjaxRes placeAdd(Place place);
 
+    AjaxRes placeUpdate(Place place);
+
+    Place getOne(Integer id);
 
 }

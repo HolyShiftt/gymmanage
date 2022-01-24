@@ -27,4 +27,8 @@ public interface PlaceMapper {
     List<PlaceKind> kindList();
 
     int placeAdd(Place place);
+
+    int placeUpdate(Place place);
+
+    Place getOne(Integer id);
 }

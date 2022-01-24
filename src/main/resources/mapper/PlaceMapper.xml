@@ -22,6 +22,14 @@
   <update id="kindAddUserRole">
     update sys_user set role = #{role} where id = #{kindManager}
   </update>
+  <update id="placeUpdate">
+    update gym_place set
+    name = #{name},
+    kind_id = #{kindId},
+    size = #{size},
+    price = #{price}
+    where id = #{id}
+  </update>
   <select id="getAllPlace" resultType="com.gymmanage.gym.entity.Place">
     select p.*, u.name as managerName ,p.kind_id as kindId,
     k.name as kindName from gym_place p
@@ -49,5 +57,8 @@
   </select>
   <select id="kindList" resultType="com.gymmanage.gym.entity.PlaceKind">
     select * from gym_place_kind
+  </select>
+  <select id="getOne" resultType="com.gymmanage.gym.entity.Place">
+    select *, kind_id as kindId from gym_place where id = #{id}
   </select>
 </mapper>

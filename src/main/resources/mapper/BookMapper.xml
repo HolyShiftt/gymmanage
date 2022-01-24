@@ -18,10 +18,26 @@
     <select id="getBookByPlaceId" resultType="com.gymmanage.gym.entity.Book">
         select *, start_time as startTime, end_time as endTime
         from gym_book
-        where place_id = #{id}
+        where place_id = #{id} and is_cancel = 0
     </select>
     <update id="updPlace">
     update gym_place set state = 2 where id = #{id}
     </update>
-
+    <update id="editApply">
+        update gym_book
+        set start_time = #{startTime},
+        end_time = #{endTime},
+        name = #{name}
+        where id = #{id}
+    </update>
+    <update id="cancelApply1">
+        update gym_book
+        set is_cancel = 1
+        where id = #{id}
+    </update>
+    <update id="cancelApply2">
+        update gym_place
+        set state = 0
+        where id = #{placeId}
+    </update>
 </mapper>

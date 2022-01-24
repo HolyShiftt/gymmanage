@@ -1,7 +1,8 @@
-layui.use([ 'layer', 'form' ], function() {
+layui.use(['layer', 'form','laydate'], function () {
     var $ = layui.$
-    var layer = layui.layer
-    var form = layui.form
+        , layer = layui.layer
+        , form = layui.form
+        , laydate = layui.laydate;
 
     // 场地类型下拉列表
     $.ajax({
@@ -14,32 +15,42 @@ layui.use([ 'layer', 'form' ], function() {
         }
     })
 
+    // 获取该行数据
+    $.ajax('/place/getOne', {
+        async : false,
+        data : {
+            id : $('#id').val()
+        },
+        success : function(d) {
+            form.val("placeUpdate", d);
+        }
+    });
+
+    // 渲染表单
     form.render();
 
     // 表单的提交事件
     form.on('submit(formDemo)', function(data) {
         layer.load();
-        $.post('/place/placeAdd', data.field, function(d) {
+        $.post('/place/placeUpdate', data.field, function(d) {
             if (d.success) {
-                layer.msg("添加成功", {
+                layer.msg("修改成功", {
                     icon : 6,
                     time : 2000
                 }, function() {
-                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    parent.layer.close(parent.layer.getFrameIndex(window.name))
                     parent.placeTable.reload();
                 })
             } else {
-                layer.alert(d.msg)
+                layer.alert(d.msg || d.message)
                 layer.closeAll('loading');
             }
         });
-        return false;// 阻止表单提交，使用ajax提交
+        return false;
     })
 
-
     $('#close').click(function() {
-        var index = parent.layer.getFrameIndex(window.name)
-        parent.layer.close(index)
+        parent.layer.close(parent.layer.getFrameIndex(window.name))
     })
 
 })

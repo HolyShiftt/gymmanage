@@ -42,13 +42,18 @@ public class BookController {
 
     @RequestMapping("/apply")
     @ResponseBody
-    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime) {
+    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime,Integer id) {
         Book book = new Book();
         book.setPlaceId(placeId);
         book.setName(name);
         book.setStartTime(startTime);
         book.setEndTime(endTime);
-        return bookService.apply(book);
+        if (id != null){
+            book.setId(id);
+            return bookService.editApply(book);
+        }else{
+            return bookService.apply(book);
+        }
     }
 
     @RequestMapping("/getBookByPlaceId")
@@ -56,4 +61,11 @@ public class BookController {
     public Book getBookByPlaceId(Integer id){
         return bookService.getBookByPlaceId(id);
     }
+
+    @RequestMapping("/cancelApply")
+    @ResponseBody
+    public AjaxRes cancelApply(Integer id,Integer placeId){
+        return bookService.cancelApply(id, placeId);
+    }
+
 }
