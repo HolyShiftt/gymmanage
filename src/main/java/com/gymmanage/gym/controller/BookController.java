@@ -34,9 +34,9 @@ public class BookController {
 
     @RequestMapping("/bookList")
     @ResponseBody
-    public Table bookList(LayuiPage layuiPage){
+    public Table bookList(LayuiPage layuiPage,Integer isCancel){
         Page<?> page = PageHelper.startPage(layuiPage.getPage(), layuiPage.getLimit());
-        List<Book> book = bookService.selectAll();
+        List<Book> book = bookService.selectAll(isCancel);
         return Table.success(Long.valueOf(page.getTotal()),book);
     }
 

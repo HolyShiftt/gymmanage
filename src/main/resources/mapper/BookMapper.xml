@@ -6,13 +6,13 @@
         (#{startTime},#{endTime},#{placeId},#{name})
     </insert>
     <select id="selectAll" resultType="com.gymmanage.gym.entity.Book">
-        select b.*,b.start_time as startTime, b.end_time as endTime, p.name as placeName
+        select b.*,b.start_time as startTime, b.end_time as endTime, p.name as placeName, p.id as placeId
         from gym_book b
         left join gym_place p
         on b.place_id = p.id
-        where b.is_cancel = 0
-        <if test="order != null and order != ''">
-            order by b.${order}
+        where b.is_cancel = #{isCancel}
+        <if test="Order != null and Order != ''">
+            order by b.${Order}
         </if>
     </select>
     <select id="getBookByPlaceId" resultType="com.gymmanage.gym.entity.Book">

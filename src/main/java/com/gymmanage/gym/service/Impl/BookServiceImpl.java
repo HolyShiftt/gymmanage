@@ -20,8 +20,8 @@ public class BookServiceImpl implements BookService {
     private BookMapper bookMapper;
 
     @Override
-    public List<Book> selectAll() {
-        return bookMapper.selectAll("start_time");
+    public List<Book> selectAll(Integer isCancel) {
+        return bookMapper.selectAll(isCancel,"start_time");
     }
 
     @Override

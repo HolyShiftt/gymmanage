@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface BookService {
-    List<Book> selectAll();
+    List<Book> selectAll(Integer isCancel);
 
     AjaxRes apply(Book book);
 
