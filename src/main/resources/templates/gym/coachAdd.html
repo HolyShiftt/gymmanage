@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加教练</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+</head>
+<body style="margin: 10px">
+<div class="layer_self_wrap">
+    <form class="layui-form" lay-filter="coachAdd" style="margin-top: 20px">
+        <div style="padding-right:50px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">教练姓名<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">教练性别<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <select name="sex" id="sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">教练年龄<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="age" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">教授课程<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input name="course"  autocomplete="off" class="layui-input" type="text" style="width: 60%" lay-verify="required"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程价格<span style="color: red">*</span></label>
+                <div class="layui-input-block" style="display: flex">
+                    <input name="price"  autocomplete="off" class="layui-input" type="text" style="width: 60%" lay-verify="required"/>
+                    <span style="font-size: 20px;margin: auto auto auto 10px;">元/节</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary close" id="close">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/gym/coachAdd.js"></script>
+</body>
+</html>

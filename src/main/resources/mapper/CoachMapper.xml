@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gymmanage.gym.dao.CoachMapper" >
+    <insert id="coachAdd">
+        insert into shop_coach (name, sex, age, course, price) values (#{name},#{sex},#{age},#{course},#{price})
+    </insert>
+    <update id="coachUpdate">
+        update shop_coach
+        set
+        name = #{name},
+        sex = #{sex},
+        age = #{age},
+        course = #{course},
+        price = #{price}
+        where id = #{id}
+    </update>
+    <delete id="coachDel">
+         delete from shop_coach where id = #{id}
+    </delete>
+    <select id="selectAll" resultType="com.gymmanage.gym.entity.Coach">
+        select * from shop_coach
+    </select>
+    <select id="getOne" resultType="com.gymmanage.gym.entity.Coach">
+        select * from shop_coach where id = #{id}
+    </select>
+
+</mapper>
