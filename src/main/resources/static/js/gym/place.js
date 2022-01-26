@@ -33,7 +33,7 @@ layui.use('table', function(){
                     case 3: return "暂停使用";
                 }
             }}
-            ,{fixed: 'right', title: '操作', toolbar: '#barDemo'}
+            ,{fixed: 'right', title: '操作', toolbar: '#barDemo', width:200}
         ]]
         ,page:true
 

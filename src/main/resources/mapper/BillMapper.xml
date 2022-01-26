@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gymmanage.bill.dao.BillMapper" >
+    <insert id="billAdd">
+        insert into shop_bill
+        (coach_id, coach_time, object_id,object_num,place_id,place_time) values
+        (#{coach_id},#{coach_time},#{object_id},#{object_num},#{place_id},#{place_time})
+    </insert>
+    <update id="billUpdate">
+        update shop_bill
+        set
+        coach_id = #{coach_id},
+        coach_time = #{coach_time},
+        object_id = #{object_id},
+        object_num = #{object_num},
+        place_id = #{place_id},
+        place_time = #{place_time},
+        where id = #{id}
+    </update>
+    <delete id="billDel">
+         delete from shop_bill where id = #{id}
+    </delete>
+    <select id="selectAll" resultType="com.gymmanage.bill.entity.Bill">
+        select s.*,c.name as coach_name,o.name as object_name from shop_bill s
+        left join shop_coach c on s.coach_id = c.id
+        left join shop_object o on s.object_id  = o.id
+        left join gym_place p on s.place_id = p.id
+    </select>
+    <select id="getOne" resultType="com.gymmanage.bill.entity.Bill">
+        select s.*,c.name as coach_name,o.name as object_name from shop_bill s
+        left join shop_coach c on s.coach_id = c.id
+        left join shop_object o on s.object_id  = o.id
+        left join gym_place p on s.place_id = p.id
+        where id = #{id}
+    </select>
+
+</mapper>

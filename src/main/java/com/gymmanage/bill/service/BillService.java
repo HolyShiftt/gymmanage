@@ -1,0 +1,17 @@
+package com.gymmanage.bill.service;
+import com.gymmanage.bill.entity.Bill;
+import com.gymmanage.utils.AjaxRes;
+
+import java.util.List;
+
+public interface BillService {
+    List<Bill> selectAll();
+
+    AjaxRes billAdd(Bill bill);
+
+    AjaxRes billUpdate(Bill bill);
+
+    AjaxRes billDel(Integer id);
+
+    Bill getOne(Integer id);
+}
