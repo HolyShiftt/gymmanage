@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface BillMapper {
-    List<Bill> selectAll();
+    List<Bill> selectAll(Integer pay);
 
     AjaxRes billAdd(Bill bill);
 

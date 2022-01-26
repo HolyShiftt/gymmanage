@@ -3,7 +3,7 @@ layui.use('table', function () {
         $ = layui.jquery;
 
 
-    // 用户信息表格
+    // 预约信息表格
     bookTable = table.render({
         elem: '#bookTable'
         , url: '/book/bookList'

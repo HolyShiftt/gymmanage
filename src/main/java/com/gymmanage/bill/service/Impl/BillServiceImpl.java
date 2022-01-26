@@ -15,8 +15,8 @@ public class BillServiceImpl implements BillService {
     private BillMapper billMapper;
 
     @Override
-    public List<Bill> selectAll() {
-        return billMapper.selectAll();
+    public List<Bill> selectAll(Integer pay) {
+        return billMapper.selectAll(pay);
     }
 
     @Override

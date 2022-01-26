@@ -5,7 +5,7 @@ import com.gymmanage.utils.AjaxRes;
 import java.util.List;
 
 public interface BillService {
-    List<Bill> selectAll();
+    List<Bill> selectAll(Integer pay);
 
     AjaxRes billAdd(Bill bill);
 

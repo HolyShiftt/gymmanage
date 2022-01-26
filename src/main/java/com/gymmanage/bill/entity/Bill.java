@@ -1,7 +1,9 @@
 package com.gymmanage.bill.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 
@@ -11,7 +13,9 @@ public class Bill {
 
     private Integer id;
 
-    private String create_time;
+    @JsonFormat(pattern = "yyyy-MM-dd h:mm",timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd h:mm")
+    private String creat_time;
 
     private Integer client_id;
 
@@ -34,5 +38,7 @@ public class Bill {
     private String place_name;
 
     private String place_time;
+
+    private Integer is_pay;
 
 }

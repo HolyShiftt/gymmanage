@@ -25,6 +25,7 @@
         left join shop_coach c on s.coach_id = c.id
         left join shop_object o on s.object_id  = o.id
         left join gym_place p on s.place_id = p.id
+        where s.is_pay = #{pay}
     </select>
     <select id="getOne" resultType="com.gymmanage.bill.entity.Bill">
         select s.*,c.name as coach_name,o.name as object_name from shop_bill s

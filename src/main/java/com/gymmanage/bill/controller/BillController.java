@@ -40,9 +40,9 @@ public class BillController {
 
     @RequestMapping("/billList")
     @ResponseBody
-    public Table billList(LayuiPage layuiPage){
+    public Table billList(Integer pay,LayuiPage layuiPage){
         Page<?> page = PageHelper.startPage(layuiPage.getPage(), layuiPage.getLimit());
-        List<Bill> bill = billService.selectAll();
+        List<Bill> bill = billService.selectAll(pay);
         return Table.success(Long.valueOf(page.getTotal()),bill);
     }
 
