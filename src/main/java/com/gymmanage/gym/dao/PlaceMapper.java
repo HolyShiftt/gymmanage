@@ -31,4 +31,10 @@ public interface PlaceMapper {
     int placeUpdate(Place place);
 
     Place getOne(Integer id);
+
+    int changeState(Integer id, Integer state);
+
+    int payBill(Integer id);
+
+    int createBill(Integer placeId, String time);
 }

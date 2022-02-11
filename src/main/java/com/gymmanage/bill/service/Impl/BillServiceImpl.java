@@ -2,11 +2,15 @@ package com.gymmanage.bill.service.Impl;
 
 import com.gymmanage.bill.dao.BillMapper;
 import com.gymmanage.bill.entity.Bill;
+import com.gymmanage.bill.entity.BillItem;
 import com.gymmanage.bill.service.BillService;
+import com.gymmanage.gym.entity.Coach;
+import com.gymmanage.shop.entity.ShopObject;
 import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,6 +67,34 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public Bill getOne(Integer id) {
+        List<BillItem> billItem = billMapper.getBillItem(1);
+        for (BillItem o : billItem) {
+            System.out.println(o.getType());
+        }
         return billMapper.getOne(id);
+    }
+
+    @Override
+    public Bill getOneByPlaceId(Integer placeId) {
+        List<ShopObject> objectList = new ArrayList<ShopObject>();
+        List<Coach> coachList = new ArrayList<Coach>();
+        Bill oneByPlaceId = billMapper.getOneByPlaceId(placeId);
+        List<BillItem> billItem = billMapper.getBillItem(placeId);
+        if(billItem.size()!=1){
+            for (BillItem o : billItem) {
+                if (o.getType().equals("obj")){
+                    ShopObject obj = billMapper.getObj(o.getId());
+                    obj.setBillNum(o.getNum());
+                    objectList.add(obj);
+                }else if (o.getType().equals("coach")){
+                    Coach coach = billMapper.getCoach(o.getId());
+                    coach.setTime(o.getNum());
+                    coachList.add(coach);
+                }
+            }
+            oneByPlaceId.setObjectList(objectList);
+            oneByPlaceId.setCoachList(coachList);
+        }
+        return oneByPlaceId;
     }
 }

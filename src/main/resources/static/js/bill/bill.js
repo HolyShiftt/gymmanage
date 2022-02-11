@@ -11,9 +11,8 @@ layui.use('table', function () {
         , page: true
         , cols: [[
             {field: 'creat_time', title: '创建时间'}
-            , {field: 'place', title: '结束时间'}
-            , {field: 'placeName', title: '场地名称'}
-            , {field: 'name', title: '预约人'}
+            , {field: 'place_name', title: '场地名称'}
+            , {field: 'total', title: '总价'}
             , {fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
         ]]
     });

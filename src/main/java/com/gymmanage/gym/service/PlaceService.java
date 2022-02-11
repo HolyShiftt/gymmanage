@@ -23,4 +23,6 @@ public interface PlaceService {
 
     Place getOne(Integer id);
 
+    AjaxRes changeState(Integer id, Integer state,Integer pay);
+
 }

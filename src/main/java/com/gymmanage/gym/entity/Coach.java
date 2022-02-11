@@ -20,4 +20,7 @@ public class Coach {
     private String price;
 
     private Integer state;
+
+    private Integer time;
+
 }

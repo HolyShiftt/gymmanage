@@ -19,6 +19,9 @@
   <insert id="placeAdd">
     insert into gym_place (name,kind_id,size,price) values (#{name},#{kindId},#{size},#{price})
   </insert>
+  <insert id="createBill">
+    insert into shop_bill (place_id,place_time,creat_time) values (#{placeId},1,#{time})
+  </insert>
   <update id="kindAddUserRole">
     update sys_user set role = #{role} where id = #{kindManager}
   </update>
@@ -29,6 +32,16 @@
     size = #{size},
     price = #{price}
     where id = #{id}
+  </update>
+  <update id="changeState">
+    update gym_place set
+    state = #{state}
+    where id = #{id}
+  </update>
+  <update id="payBill">
+    update shop_bill set
+    is_pay = 1
+    where place_id = #{id}
   </update>
   <select id="getAllPlace" resultType="com.gymmanage.gym.entity.Place">
     select p.*, u.name as managerName ,p.kind_id as kindId,

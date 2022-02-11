@@ -9,6 +9,7 @@ import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -82,5 +83,25 @@ public class PlaceServiceImpl implements PlaceService {
         return placeMapper.getOne(id);
     }
 
+    @Override
+    public AjaxRes changeState(Integer id, Integer state,Integer pay){
+        AjaxRes ajaxRes = new AjaxRes();
+        Date date = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+        if (pay == 1){
+            placeMapper.payBill(id);
+        }else{
+            placeMapper.createBill(id,dateFormat.format(date));
+        }
+        try {
+            placeMapper.changeState(id, state);
 
+            ajaxRes.setMsg("操作成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setMsg("操作失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
+    }
 }

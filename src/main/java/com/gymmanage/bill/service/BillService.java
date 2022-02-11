@@ -14,4 +14,6 @@ public interface BillService {
     AjaxRes billDel(Integer id);
 
     Bill getOne(Integer id);
+
+    Bill getOneByPlaceId(Integer placeId);
 }

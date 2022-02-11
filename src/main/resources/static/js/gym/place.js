@@ -33,7 +33,7 @@ layui.use('table', function(){
                     case 3: return "暂停使用";
                 }
             }}
-            ,{fixed: 'right', title: '操作', toolbar: '#barDemo', width:200}
+            ,{fixed: 'right', title: '操作', toolbar: '#barDemo', width:300}
         ]]
         ,page:true
 
@@ -98,23 +98,45 @@ layui.use('table', function(){
 
     // 预约提交
     form.on('submit(sub)', function(data) {
+        var startD,endD,startH,endH;
         data.field.startTime = layui.util.toDateString(data.field.startTime, 'yyyy-MM-dd HH:mm')
         data.field.endTime = layui.util.toDateString(data.field.endTime, 'yyyy-MM-dd HH:mm')
-        layer.load();
-        $.post('/book/apply', data.field, function(d) {
-            if (d.success) {
-                layer.msg(d.msg, {
-                    icon : 6,
-                    time : 2000
-                }, function() {
-                    layer.closeAll();
-                    placeTable.reload()
-                })
-            } else {
-                layer.alert(d.msg)
-                layer.closeAll('loading');
-            }
-        });
+        startD = layui.util.toDateString(data.field.startTime, 'yyyy-MM-dd')
+        endD = layui.util.toDateString(data.field.endTime, 'yyyy-MM-dd')
+        startH = layui.util.toDateString(data.field.startTime, 'HH:mm')
+        endH = layui.util.toDateString(data.field.endTime, 'HH:mm')
+        endD = endD.split("-");
+        startD = startD.split("-");
+        endH = endH.split(":");
+        startH = startH.split(":");
+        if (endD[2] - startD[2] != 0){
+            layer.alert("预约范围只能在当天")
+        } else if(endH[0] - startH[0] < 0){
+            layer.alert("预约开始时间不能早于结束时间")
+        } else if(endH[0] - startH[0] == 2 && endH[1] - startH[1] < 0) {
+            layer.alert("预约最少两小时")
+        } else if(endH[0] - startH[0] == 0 && endH[1] - startH[1] < 0){
+            layer.alert("预约开始时间不能早于结束时间")
+        } else if(endH[0] - startH[0] < 2){
+            layer.alert("预约最少两小时")
+        } else{
+            layer.load();
+            $.post('/book/apply', data.field, function(d) {
+                if (d.success) {
+                    layer.msg(d.msg, {
+                        icon : 6,
+                        time : 2000
+                    }, function() {
+                        layer.closeAll();
+                        placeTable.reload()
+                    })
+                } else {
+                    layer.alert(d.msg)
+                    layer.closeAll('loading');
+                }
+            });
+        }
+
         return false;
     });
 
@@ -132,6 +154,24 @@ layui.use('table', function(){
         var data = obj.data;
         if (obj.event === 'apply'){
             apply(data.id,data.state);
+        }else if (obj.event === 'open'){
+            if (data.state == 1){
+                layer.alert("无需重复开场")
+            }else if(data.state == 3){
+                layer.alert("该场地已暂停使用")
+            }else{
+                if(data.state == 2){
+
+                }
+                $.ajax({
+                    url:'/place/changeState',
+                    data:{id:data.id,state:1,pay:0},
+                    success : function(d) {
+                        layer.alert("开场成功")
+                        placeTable.reload()
+                    }
+                })
+            }
         }else if (obj.event === 'edit'){
             layer.open({
                 title : '编辑',
@@ -139,6 +179,61 @@ layui.use('table', function(){
                 area : [ '500px', '400px' ],
                 content : '/place/placeUpdatePage?id='+data.id
             })
+        }else if (obj.event === 'bill'){
+            if (data.state != 1){
+                layer.alert("该场地未在使用中")
+            }else{
+                $("#billInfo").empty();
+                $.ajax({
+                    url:'/bill/getOneByPlaceId',
+                    data:{placeId:data.id},
+                    success : function(d) {
+                        var total = 0
+                        $("#billInfo").append(`<div class="layui-form-item"><label style="margin-left: 30px">创建时间：`+d.creat_time+`</label></div>
+                    <div class="layui-form-item"><label class="layui-col-md2" style="margin-left: 50px">名称</label><label class="layui-col-md2">单价</label>
+                    <label class="layui-col-md2">数量</label><label class="layui-col-md2">共计</label></div>
+                    <div class="layui-form-item"><label class="layui-col-md2" style="margin-left: 50px">`+d.place_name+`</label>
+                    <label class="layui-col-md2">`+d.place_price+`</label><label class="layui-col-md2">`+d.place_time+`</label>
+                    <label class="layui-col-md2">`+d.place_price * d.place_time+`</label></div>`)
+                        total+=d.place_price * d.place_time;
+                        if (d.coachList){
+                            for (let i = 0; i < d.coachList.length; i++) {
+                                $("#billInfo").append(`<div class="layui-form-item"><label class="layui-col-md2" style="margin-left: 50px">`+d.coachList[i].name+`</label>
+                    <label class="layui-col-md2">`+d.coachList[i].price+`</label><label class="layui-col-md2">`+d.coachList[i].time+`</label>
+                    <label class="layui-col-md2">`+d.coachList[i].price *d.coachList[i].time+`</label></div>`)
+                                total+=d.coachList[i].price *d.coachList[i].time;
+                            }
+                        }
+                        if (d.objectList){
+                            for (let i = 0; i < d.objectList.length; i++) {
+                                $("#billInfo").append(`<div class="layui-form-item"><label class="layui-col-md2" style="margin-left: 50px">`+d.objectList[i].name+`</label>
+                    <label class="layui-col-md2">`+d.objectList[i].price+`</label><label class="layui-col-md2">`+d.objectList[i].billNum+`</label>
+                    <label class="layui-col-md2">`+d.objectList[i].price *d.objectList[i].billNum+`</label></div>`)
+                                total+=d.objectList[i].price *d.objectList[i].billNum;
+                            }
+                        }
+
+                        $("#billInfo").append(`<div class="layui-form-item"><label class="layui-col-md5" style="float: right">总价：`+total+`</label>`);
+                        layer.open({
+                            title : '账单信息',
+                            type : 1,
+                            area : [ '40%', '80%' ],
+                            content : $("#bill")
+                        })
+
+                    }
+
+                })
+                $("#pay").click(function () {
+                    $.ajax({
+                        url:'/place/changeState',
+                        data:{id:data.id,state:0,pay:1},
+                        success : function(d) {
+                            placeTable.reload()
+                        }
+                    })
+                })
+            }
         }
     })
 

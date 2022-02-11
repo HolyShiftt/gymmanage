@@ -58,6 +58,12 @@ public class BillController {
         return billService.getOne((Integer)session.getAttribute("updateBillId"));
     }
 
+    @RequestMapping("/getOneByPlaceId")
+    @ResponseBody
+    public Bill getOneByPlaceId(Integer placeId){
+        return billService.getOneByPlaceId(placeId);
+    }
+
     @RequestMapping("/billUpdate")
     @ResponseBody
     public AjaxRes billUpdate(Bill bill){

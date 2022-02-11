@@ -87,4 +87,10 @@ public class PlaceController {
         return placeService.placeUpdate(place);
     }
 
+    @RequestMapping("/changeState")
+    @ResponseBody
+    public AjaxRes changeState(Integer id,Integer state,Integer pay){
+        return placeService.changeState(id, state,pay);
+    }
+
 }

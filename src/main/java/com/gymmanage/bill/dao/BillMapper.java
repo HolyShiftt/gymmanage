@@ -1,6 +1,9 @@
 package com.gymmanage.bill.dao;
 
 import com.gymmanage.bill.entity.Bill;
+import com.gymmanage.bill.entity.BillItem;
+import com.gymmanage.gym.entity.Coach;
+import com.gymmanage.shop.entity.ShopObject;
 import com.gymmanage.utils.AjaxRes;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +20,12 @@ public interface BillMapper {
     int billDel(Integer id);
 
     Bill getOne(Integer id);
+
+    List<BillItem> getBillItem(Integer placeId);
+
+    Bill getOneByPlaceId(Integer placeId);
+
+    ShopObject getObj(Integer id);
+
+    Coach getCoach(Integer id);
 }

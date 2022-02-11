@@ -16,4 +16,6 @@ public class ShopObject {
     private String desc;
 
     private Integer num;
+
+    private Integer billNum;
 }
