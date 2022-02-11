@@ -21,7 +21,7 @@ public class Client {
 
     private String address;
 
-    private boolean is_vip;
+    private Integer is_vip;
 
     private String vip_time;
 

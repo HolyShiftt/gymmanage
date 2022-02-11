@@ -10,11 +10,11 @@ import java.util.List;
 public interface ClientMapper {
     List<Client> selectAll();
 
-    AjaxRes clientAdd(Client client);
+    int clientAdd(Client client);
 
-    AjaxRes clientUpdate(Client client);
+    int clientUpdate(Client client);
 
-    AjaxRes clientDel(Integer id);
+    int clientDel(Integer id);
 
     Client getOne(Integer id);
 }

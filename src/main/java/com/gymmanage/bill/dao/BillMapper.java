@@ -10,11 +10,11 @@ import java.util.List;
 public interface BillMapper {
     List<Bill> selectAll(Integer pay);
 
-    AjaxRes billAdd(Bill bill);
+    int billAdd(Bill bill);
 
-    AjaxRes billUpdate(Bill bill);
+    int billUpdate(Bill bill);
 
-    AjaxRes billDel(Integer id);
+    int billDel(Integer id);
 
     Bill getOne(Integer id);
 }

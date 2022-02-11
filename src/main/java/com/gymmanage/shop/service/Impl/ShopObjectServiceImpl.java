@@ -41,6 +41,7 @@ public class ShopObjectServiceImpl implements ShopObjectService {
             ajaxRes.setMsg("更新成功");
             ajaxRes.setSuccess(true);
         }catch (Exception e){
+            System.out.println(e);
             ajaxRes.setMsg("更新失败");
             ajaxRes.setSuccess(false);
         }

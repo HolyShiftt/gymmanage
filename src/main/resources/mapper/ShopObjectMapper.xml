@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gymmanage.shop.dao.ShopObjectMapper" >
     <insert id="shopObjectAdd">
-        insert into shop_object (name, price, desc, num) values (#{name},#{price},#{desc},#{num})
+        insert into shop_object (`name`, price, `desc`, num) values (#{name},#{price},#{desc},#{num})
     </insert>
     <update id="shopObjectUpdate">
         update shop_object
         set
-        name = #{name},
+        `name` = #{name},
         price = #{price},
-        desc = #{desc},
-        num = #{num},
+        `desc` = #{desc},
+        num = #{num}
         where id = #{id}
     </update>
     <delete id="shopObjectDel">

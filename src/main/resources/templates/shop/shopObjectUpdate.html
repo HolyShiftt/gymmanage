@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑商品</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+</head>
+<body style="margin: 10px">
+<div class="layer_self_wrap">
+    <form class="layui-form" lay-filter="shopObjectUpdate" style="margin-top: 20px">
+        <div style="padding-right:50px">
+            <input type="text" name="id" autocomplete="off" class="layui-input" style="display: none">
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品名<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">价格<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="price" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="desc" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">库存<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="num" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary close" id="close">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/shop/shopObjectUpdate.js"></script>
+</body>
+</html>

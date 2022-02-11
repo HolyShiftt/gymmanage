@@ -10,11 +10,11 @@ import java.util.List;
 public interface ShopObjectMapper {
     List<ShopObject> selectAll();
 
-    AjaxRes shopObjectAdd(ShopObject shopObject);
+    int shopObjectAdd(ShopObject shopObject);
 
-    AjaxRes shopObjectUpdate(ShopObject shopObject);
+    int shopObjectUpdate(ShopObject shopObject);
 
-    AjaxRes shopObjectDel(Integer id);
+    int shopObjectDel(Integer id);
 
     ShopObject getOne(Integer id);
 }

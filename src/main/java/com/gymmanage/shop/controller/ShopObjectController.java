@@ -16,25 +16,25 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("ShopObject")
+@RequestMapping("shopObject")
 public class ShopObjectController {
     @Autowired
     private ShopObjectService shopObjectService;
 
     @RequestMapping("shopObjectPage")
     public String shopObjectPage(){
-        return "/shopObject/shopObject";
+        return "/shop/shopObject";
     }
 
     @RequestMapping("shopObjectAddPage")
     public String shopObjectAddPage(){
-        return "/shopObject/shopObjectAdd";
+        return "/shop/shopObjectAdd";
     }
 
     @RequestMapping("shopObjectUpdatePage")
     public String shopObjectUpdatePage(Integer id, HttpSession session){
         session.setAttribute("updateShopObjectId",id);
-        return "/shopObject/shopObjectUpdate";
+        return "/shop/shopObjectUpdate";
     }
 
     @RequestMapping("/shopObjectList")

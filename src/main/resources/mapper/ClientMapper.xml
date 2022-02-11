@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gymmanage.client.dao.ClientMapper" >
     <insert id="clientAdd">
-        insert into gym_client (user_name, tel,sex, age, birth, address,is_vip,vip_time)
-        values (#{user_name},#{tel},#{sex},#{age},#{birth},#{address},#{is_vip},#{vip_time})
+        insert into gym_client (user_name, tel,sex, age, birth, address,is_vip)
+        values (#{user_name},#{tel},#{sex},#{age},#{birth},#{address},#{is_vip})
     </insert>
     <update id="clientUpdate">
         update gym_client
@@ -14,8 +14,7 @@
         age = #{age},
         birth = #{birth},
         address = #{address},
-        is_vip = #{is_vip},
-        vip_time = #{vip_time}
+        is_vip = #{is_vip}
         where id = #{id}
     </update>
     <delete id="clientDel">
