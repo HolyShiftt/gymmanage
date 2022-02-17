@@ -92,7 +92,7 @@ layui.use(['layer', 'util', 'element'], function () {
                     }
                 }
                 $(".menu").on("click", function (data) {
-                    changeTab(data.target.attributes[1].nodeValue,data.target.id,data.target.innerHTML)
+                    changeTab(data.target.attributes[1].nodeValue, data.target.id, data.target.innerHTML)
                 })
             }
         });
@@ -118,18 +118,18 @@ layui.use(['layer', 'util', 'element'], function () {
                 </li>`)
         $(".menu").on("click", function (data) {
             var id = data.currentTarget.id
-            var url,title;
-            if (id == 'book'){
+            var url, title;
+            if (id == 'book') {
                 url = "/client/book";
                 title = '运动馆预约';
-            }else if(id == 'myBook'){
+            } else if (id == 'myBook') {
                 url = "/client/myBook";
                 title = '我的预约'
-            }else if(id == 'updClient'){
+            } else if (id == 'updClient') {
                 url = "/client/updClient";
                 title = '信息修改'
             }
-            changeTab(url,id,title)
+            changeTab(url, id, title)
         })
 
         $(function () {
@@ -139,21 +139,17 @@ layui.use(['layer', 'util', 'element'], function () {
         });
     }
 
-    function changeTab(url,id,title) {
+    function changeTab(url, id, title) {
         if (url) {
             // 判断点击的该项是否已经存在
             if (!$("[lay-id='" + id + "']").length) {
                 // 添加内容
                 var height = $(document).height() - 200;
                 element.tabAdd('tabs', {
-                    title: title
-                    ,
-                    content: "<iframe src=" + url + " frameborder='0' width='100%' height=" + height + "></iframe>"
-                    ,
-                    id: id
-                    ,
-                    value: url
-                    ,
+                    title: title,
+                    content: "<iframe src=" + url + " frameborder='0' width='100%' height=" + height + "></iframe>",
+                    id: id,
+                    value: url,
                     autoRefresh: true
                 });
                 //切换到指定Tab项
