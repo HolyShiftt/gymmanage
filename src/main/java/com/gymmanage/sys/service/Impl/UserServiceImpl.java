@@ -1,5 +1,6 @@
 package com.gymmanage.sys.service.Impl;
 
+import com.gymmanage.client.entity.Client;
 import com.gymmanage.sys.dao.UserMapper;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.sys.service.UserService;
@@ -77,6 +78,21 @@ public class UserServiceImpl implements UserService {
     public boolean checkPwd(String username, String pwd) {
         String pwd1 = userMapper.getPwd(username);
         return pwd.equals(pwd1);
+    }
+
+    @Override
+    public String checkClientPwd(String username, String pwd) {
+        Client clientPwd = userMapper.getClientPwd(username);
+        if (clientPwd!=null){
+            String pwd1 = clientPwd.getPwd();
+            if (pwd.equals(pwd1)){
+                return clientPwd.getUser_name();
+            }else{
+                return "no";
+            }
+        }else {
+            return "no";
+        }
     }
 
     @Override

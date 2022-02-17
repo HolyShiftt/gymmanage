@@ -1,5 +1,6 @@
 package com.gymmanage.sys.dao;
 
+import com.gymmanage.client.entity.Client;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.utils.AjaxRes;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface UserMapper {
 
     String getPwd(String username);
+
+    Client getClientPwd(String username);
 
     List<User> selectAll();
 

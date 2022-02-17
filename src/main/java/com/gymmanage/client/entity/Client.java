@@ -25,6 +25,6 @@ public class Client {
 
     private String vip_time;
 
-    private String password;
+    private String pwd;
 
 }

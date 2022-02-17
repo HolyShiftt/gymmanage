@@ -49,12 +49,23 @@ public class UserController {
     // 用户登录检查
     @RequestMapping("/userCheck")
     @ResponseBody
-    public AjaxRes userCheck(String username, String pwd, HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public AjaxRes userCheck(String username, String pwd, HttpSession session,String role) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         AjaxRes ajaxRes = new AjaxRes();
         // 密码加密
         MessageDigest md5= MessageDigest.getInstance("MD5");
         BASE64Encoder base64en = new BASE64Encoder();
-        boolean res = userService.checkPwd(username, base64en.encode(md5.digest(pwd.getBytes("utf-8"))));
+        boolean res = false;
+        if (role.equals("admin")){
+            res = userService.checkPwd(username, base64en.encode(md5.digest(pwd.getBytes("utf-8"))));
+        }else if (role.equals("user")) {
+            String s = userService.checkClientPwd(username, pwd);
+            if(s.equals("no")){
+                res=false;
+            }else {
+                username = s;
+                res = true;
+            }
+        }
         ajaxRes.setSuccess(res);
         if (res){
             ajaxRes.setMsg("登录成功");

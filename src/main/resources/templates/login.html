@@ -13,8 +13,15 @@
     <img src="/img/login/login_newback.jpg" class="imgStyle"  alt=""/>
     <div class="loginForm">
         <form id="useLogin">
+            <input id="role" type="text" name="role" style="display: none" value="admin">
             <div class="logoHead">
                 <h1 style="margin-top: 15px">体育运动场馆管理系统</h1>
+            </div>
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title" style="width: 195px">
+                    <li class="layui-this role">管理员登录</li>
+                    <li class="role">用户登录</li>
+                </ul>
             </div>
             <div class="usernameWrapDiv">
                 <div class="usernameLabel">
@@ -37,7 +44,7 @@
             <div class="layui-form-item">
                 <div class="usernameWrapDiv">
                     <div class="submitDiv">
-                        <button id="sub" lay-submit="" lay-filter="sub" class="layui-btn">登录</button>
+                        <button id="sub" lay-submit="" lay-filter="sub" class="layui-btn">管理员登录</button>
                     </div>
                 </div>
             </div>
