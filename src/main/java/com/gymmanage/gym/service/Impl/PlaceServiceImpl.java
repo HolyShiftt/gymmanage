@@ -1,5 +1,6 @@
 package com.gymmanage.gym.service.Impl;
 
+import com.gymmanage.gym.dao.BookMapper;
 import com.gymmanage.gym.dao.PlaceMapper;
 import com.gymmanage.gym.entity.Book;
 import com.gymmanage.gym.entity.Place;
@@ -9,6 +10,7 @@ import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.rmi.server.ExportException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -18,10 +20,17 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Autowired
     private PlaceMapper placeMapper;
+    @Autowired
+    private BookMapper bookMapper;
 
     @Override
     public List<Place> getAllPlace(Integer kindId) {
         return placeMapper.getAllPlace(kindId);
+    }
+
+    @Override
+    public String getNextBook(Integer placeId) {
+        return placeMapper.getNextBook(placeId);
     }
 
     @Override
@@ -84,18 +93,31 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public AjaxRes changeState(Integer id, Integer state,Integer pay){
+    public AjaxRes changeState(Integer id,Integer state,Integer pay){
         AjaxRes ajaxRes = new AjaxRes();
         Date date = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+        if (state!=1 && state!=2){
+            if (bookMapper.isApply(id)!=0){
+                state = 2;
+            }else{
+                state = 0;
+            }
+        }
+
         if (pay == 1){
             placeMapper.payBill(id);
         }else{
             placeMapper.createBill(id,dateFormat.format(date));
         }
         try {
+            if (state == 1){
+                String apply = placeMapper.getApply(id);
+                if (apply!=null){
+                    bookMapper.applyArrive(apply);
+                }
+            }
             placeMapper.changeState(id, state);
-
             ajaxRes.setMsg("操作成功");
             ajaxRes.setSuccess(true);
         }catch (Exception e){

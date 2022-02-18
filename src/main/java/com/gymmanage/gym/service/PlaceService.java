@@ -11,6 +11,8 @@ public interface PlaceService {
 
     List<Place> getAllPlace(Integer kindId);
 
+    String getNextBook(Integer placeId);
+
     List<PlaceKind> getAllPlaceKind();
 
     AjaxRes kindAdd(String kind, Integer kindManager);

@@ -3,6 +3,7 @@ package com.gymmanage.sys.service;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.utils.AjaxRes;
 
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -16,9 +17,9 @@ public interface UserService {
 
     void deleteUser(Integer id);
 
-    boolean checkPwd(String username, String pwd);
+    boolean checkPwd(String username, String pwd );
 
-    String checkClientPwd(String username, String pwd);
+    String checkClientPwd(String username, String pwd, HttpSession session);
 
     User getOne(Integer id);
 

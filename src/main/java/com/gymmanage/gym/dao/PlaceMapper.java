@@ -12,6 +12,8 @@ public interface PlaceMapper {
 
     List<Place> getAllPlace(Integer kindId);
 
+    String getNextBook(Integer placeId);
+
     List<PlaceKind> getAllPlaceKind();
 
     int kindAdd(String kind);
@@ -37,4 +39,6 @@ public interface PlaceMapper {
     int payBill(Integer id);
 
     int createBill(Integer placeId, String time);
+
+    String getApply(Integer id);
 }

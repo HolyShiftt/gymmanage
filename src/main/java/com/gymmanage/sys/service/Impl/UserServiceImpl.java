@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -81,11 +82,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String checkClientPwd(String username, String pwd) {
+    public String checkClientPwd(String username, String pwd, HttpSession session) {
         Client clientPwd = userMapper.getClientPwd(username);
         if (clientPwd!=null){
             String pwd1 = clientPwd.getPwd();
             if (pwd.equals(pwd1)){
+                session.setAttribute("userId",clientPwd.getId());
                 return clientPwd.getUser_name();
             }else{
                 return "no";

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预约</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+</head>
+<body>
+<div style="padding: 0 30px;">
+    <div class="table_head_left">
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" id="showBtn"><i class="layui-icon">&#xe666;</i>展示全部</button>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md2">
+            <table class="layui-hide" id="kindTable" lay-filter="kindTable"></table>
+        </div>
+        <div class="layui-col-md10">
+            <table class="layui-hide" id="placeTable" lay-filter="placeTable"></table>
+        </div>
+    </div>
+</div>
+
+<div id="apply" class="layer_self_wrap" style="display:none;">
+    <form class="layui-form" lay-filter="placeAdd" style="margin-top: 20px">
+        <div style="padding-right:50px">
+            <input type="text" name="placeId" id="placeId" style="display:none;">
+            <input type="text" name="id" id="id" style="display:none;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">预约用户<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" id="bookName" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开始时间<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="datetime-local" name="startTime" id="startTime" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">结束时间<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="datetime-local" name="endTime" id="endTime" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" lay-submit lay-filter="sub">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary close">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-sm" lay-event="apply">预约</a>
+</script>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/client/book.js"></script>
+</body>
+</html>

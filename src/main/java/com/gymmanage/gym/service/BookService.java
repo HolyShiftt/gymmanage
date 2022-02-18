@@ -11,7 +11,9 @@ import java.util.List;
 public interface BookService {
     List<Book> selectAll(Integer isCancel);
 
-    AjaxRes apply(Book book);
+    List<Book> clientBookList(Integer userId);
+
+    AjaxRes apply(Book book,Integer id);
 
     AjaxRes editApply(Book book);
 

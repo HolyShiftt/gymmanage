@@ -5,6 +5,10 @@
         insert into gym_book (start_time,end_time,place_id,name) values
         (#{startTime},#{endTime},#{placeId},#{name})
     </insert>
+    <insert id="userApply">
+        insert into gym_book (start_time,end_time,place_id,name,user_id) values
+        (#{startTime},#{endTime},#{placeId},#{name},#{userId})
+    </insert>
     <select id="selectAll" resultType="com.gymmanage.gym.entity.Book">
         select b.*,b.start_time as startTime, b.end_time as endTime, p.name as placeName, p.id as placeId
         from gym_book b
@@ -18,7 +22,23 @@
     <select id="getBookByPlaceId" resultType="com.gymmanage.gym.entity.Book">
         select *, start_time as startTime, end_time as endTime
         from gym_book
-        where place_id = #{id} and is_cancel = 0
+        where place_id = #{id} and is_cancel = 0 and is_arrive = 0 order by start_time limit 1
+    </select>
+    <select id="clientBookList" resultType="com.gymmanage.gym.entity.Book">
+        select b.*,b.start_time as startTime, b.end_time as endTime, p.name as placeName, p.id as placeId
+        from gym_book b
+        left join gym_place p
+        on b.place_id = p.id
+        where b.user_id = #{userId}
+        <if test="Order != null and Order != ''">
+            order by b.${Order} desc
+        </if>
+    </select>
+    <select id="isApply" resultType="java.lang.Integer">
+        select count(*) from gym_book where place_id = #{placeId} and is_cancel=0 and is_arrive=0
+    </select>
+    <select id="checkApply" resultType="java.lang.String">
+        select count(*) from gym_bookwhere user_id = #{id} and is_cancel=0 and is_arrive=0
     </select>
     <update id="updPlace">
     update gym_place set state = 2 where id = #{id}
@@ -35,9 +55,15 @@
         set is_cancel = 1
         where id = #{id}
     </update>
+
     <update id="cancelApply2">
         update gym_place
-        set state = 0
+        set state = #{state}
         where id = #{placeId}
+    </update>
+    <update id="applyArrive">
+        update gym_book
+        set is_arrive = 1
+        where id = #{id}
     </update>
 </mapper>

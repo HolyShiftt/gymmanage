@@ -32,6 +32,16 @@ public class ClientController {
         return "/client/clientAdd";
     }
 
+    @RequestMapping("book")
+    public String book(){
+        return "/client/book";
+    }
+
+    @RequestMapping("myBook")
+    public String myBook(){
+        return "/client/myBook";
+    }
+
     @RequestMapping("clientUpdatePage")
     public String clientUpdatePage(Integer id, HttpSession session){
         session.setAttribute("updateClientId",id);

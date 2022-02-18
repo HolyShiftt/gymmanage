@@ -26,4 +26,8 @@ public class Book {
     private String placeName;
 
     private String name;
+
+    private Integer is_cancel;
+
+    private Integer is_arrive;
 }

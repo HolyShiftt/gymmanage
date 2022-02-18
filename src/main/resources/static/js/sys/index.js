@@ -10,6 +10,7 @@ layui.use(['layer', 'util', 'element'], function () {
     $.ajax({
         url: "/user/getUser",
         success: function (d) {
+            sessionStorage.setItem("username",d)
             $("#username").append(d)
         }
     })

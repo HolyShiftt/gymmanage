@@ -40,9 +40,18 @@ public class BookController {
         return Table.success(Long.valueOf(page.getTotal()),book);
     }
 
+    @RequestMapping("/clientBookList")
+    @ResponseBody
+    public Table clientBookList(LayuiPage layuiPage,HttpSession session){
+        Page<?> page = PageHelper.startPage(layuiPage.getPage(), layuiPage.getLimit());
+        List<Book> book = bookService.clientBookList((Integer) session.getAttribute("userId"));
+        return Table.success(Long.valueOf(page.getTotal()),book);
+    }
+
+
     @RequestMapping("/apply")
     @ResponseBody
-    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime,Integer id) {
+    public AjaxRes apply(Integer placeId, String name, String startTime, String endTime,Integer id,HttpSession session) {
         Book book = new Book();
         book.setPlaceId(placeId);
         book.setName(name);
@@ -52,7 +61,7 @@ public class BookController {
             book.setId(id);
             return bookService.editApply(book);
         }else{
-            return bookService.apply(book);
+            return bookService.apply(book,(Integer)session.getAttribute("userId"));
         }
     }
 

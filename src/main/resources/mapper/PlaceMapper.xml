@@ -74,4 +74,11 @@
   <select id="getOne" resultType="com.gymmanage.gym.entity.Place">
     select *, kind_id as kindId from gym_place where id = #{id}
   </select>
+    <select id="getNextBook" resultType="java.lang.String">
+      select end_time as nextBook from gym_book where place_id = #{placeId}
+      order by end_time desc limit 1
+    </select>
+    <select id="getApply" resultType="java.lang.String">
+      select id from gym_book where place_id = #{id} and is_arrive =0 and is_cancel=0 order by start_time limit 1
+    </select>
 </mapper>

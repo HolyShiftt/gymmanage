@@ -25,10 +25,25 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public AjaxRes apply(Book book) {
+    public List<Book> clientBookList(Integer userId) {
+        return bookMapper.clientBookList(userId,"start_time");
+    }
+
+    @Override
+    public AjaxRes apply(Book book,Integer id) {
         AjaxRes ajaxRes = new AjaxRes();
         try {
-            bookMapper.apply(book);
+            if (id==null){
+                bookMapper.apply(book);
+            }else {
+                if (bookMapper.checkApply(id)==null){
+                    bookMapper.userApply(book.getStartTime(),book.getEndTime(),book.getPlaceId(),book.getName(),id);
+                }else{
+                    ajaxRes.setMsg("您已经有预约了");
+                    ajaxRes.setSuccess(false);
+                    return ajaxRes;
+                }
+            }
             bookMapper.updPlace(book.getPlaceId());
             ajaxRes.setMsg("预约成功");
             ajaxRes.setSuccess(true);
@@ -61,9 +76,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public AjaxRes cancelApply(Integer id, Integer placeId) {
         AjaxRes ajaxRes = new AjaxRes();
+        int state;
+        if (bookMapper.isApply(placeId)!=0){
+            state = 2;
+        }else{
+            state = 0;
+        }
         try {
             bookMapper.cancelApply1(id);
-            bookMapper.cancelApply2(placeId);
+            bookMapper.cancelApply2(placeId,state);
             ajaxRes.setMsg("取消成功");
             ajaxRes.setSuccess(true);
         }catch (Exception e){

@@ -26,4 +26,5 @@ public class Place {
 
     private Integer state;
 
+    private String nextBook;
 }

@@ -58,7 +58,7 @@ public class UserController {
         if (role.equals("admin")){
             res = userService.checkPwd(username, base64en.encode(md5.digest(pwd.getBytes("utf-8"))));
         }else if (role.equals("user")) {
-            String s = userService.checkClientPwd(username, pwd);
+            String s = userService.checkClientPwd(username, pwd, session);
             if(s.equals("no")){
                 res=false;
             }else {

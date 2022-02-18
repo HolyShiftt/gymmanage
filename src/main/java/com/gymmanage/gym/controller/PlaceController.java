@@ -19,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import static sun.plugin2.os.windows.FLASHWINFO.size;
+
 @Controller
 @RequestMapping("place")
 public class PlaceController {
@@ -45,8 +47,20 @@ public class PlaceController {
     @RequestMapping("/getAllPlace")
     @ResponseBody
     public Table getAllPlace(Integer kindId, LayuiPage layuiPage){
-        int length = placeService.getAllPlace(kindId).size();
-        return Table.success(Long.valueOf(length),placeService.getAllPlace(kindId));
+        List<Place> allPlace = placeService.getAllPlace(kindId);
+        int length = allPlace.size();
+        return Table.success(Long.valueOf(length),allPlace);
+    }
+
+    @RequestMapping("/getAllPlaceBook")
+    @ResponseBody
+    public Table getAllPlaceBook(Integer kindId, LayuiPage layuiPage){
+        List<Place> allPlace = placeService.getAllPlace(kindId);
+        for (Place place : allPlace) {
+            place.setNextBook(placeService.getNextBook(place.getId()));
+        }
+        int length = allPlace.size();
+        return Table.success(Long.valueOf(length),allPlace);
     }
 
     @RequestMapping("/getAllPlaceKind")
