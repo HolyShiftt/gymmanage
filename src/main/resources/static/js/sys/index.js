@@ -37,26 +37,10 @@ layui.use(['layer', 'util', 'element'], function () {
     })
     if (sessionStorage.getItem("role") == "admin") {
 
-        $("#menutree").append(`<li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:void(0)">运动馆管理</a>
-                    <dl class="layui-nav-child" id="gym">
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:void(0)">客户管理</a>
-                    <dl class="layui-nav-child" id="client">
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:void(0)">消费管理</a>
-                    <dl class="layui-nav-child" id="spend">
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:void(0)">系统菜单</a>
-                    <dl class="layui-nav-child" id="sys">
-                    </dl>
-                </li>`)
+        $("#menu1>a>span").text("场馆管理")
+        $("#menu2>a>span").text("客户管理")
+        $("#menu3>a>span").text("消费管理")
+        $("#menu4>a>span").text("系统管理")
 
         //头部事件
         util.event('lay-header-event', {
@@ -105,18 +89,26 @@ layui.use(['layer', 'util', 'element'], function () {
             }, 3000);
         });
     } else if (sessionStorage.getItem("role") == 'user') {
-        $("#menutree").append(`<li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:void(0)">运动馆</a>
-                    <dl class="layui-nav-child" id="book">
-                    <dd class='menu' id="book"><a href='javascript:;'>运动馆预约</a></dd>
-                    <dd class='menu' id="myBook"><a href='javascript:;'>我的预约</a></dd>
-                    </dl>
-                </li><li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:void(0)">个人信息</a>
-                    <dl class="layui-nav-child" id="personal">
-                    <dd class='menu' id="updClient"><a href='javascript:;'>信息修改</a></dd>
-                    </dl>
-                </li>`)
+        $("#menu3").empty()
+        $("#menu4").empty()
+        $("#menu1>a>span").text("运动馆")
+        $("#menu2>a>span").text("个人信息")
+        $("#gym").append(`<dd class='menu' id="book"><a href='javascript:;'>运动馆预约</a></dd>
+                    <dd class='menu' id="myBook"><a href='javascript:;'>我的预约</a></dd>`)
+        $("#client").append(`<dd class='menu' id="updClient"><a href='javascript:;'>信息修改</a></dd>`)
+        // $("#menutree").append(`<li class="layui-nav-item layui-nav-itemed">
+        //             <a href="javascript:void(0)">运动馆</a>
+        //             <dl class="layui-nav-child" id="book">
+        //             <dd class='menu' id="book"><a href='javascript:;'>运动馆预约</a></dd>
+        //             <dd class='menu' id="myBook"><a href='javascript:;'>我的预约</a></dd>
+        //             </dl>
+        //         </li><li class="layui-nav-item layui-nav-itemed">
+        //             <a href="javascript:void(0)">个人信息</a>
+        //             <dl class="layui-nav-child" id="personal">
+        //             <dd class='menu' id="updClient"><a href='javascript:;'>信息修改</a></dd>
+        //             </dl>
+        //         </li>`)
+
         $(".menu").on("click", function (data) {
             var id = data.currentTarget.id
             var url, title;
