@@ -92,7 +92,7 @@ layui.use('table', function(){
         } else if(endH[0] - startH[0] < 2){
             layer.alert("预约最少两小时")
         } else if ((bookD[1] <= startD[1]&&bookD[2] > startD[2]) || (bookD[0] == startD[0] && bookD[1] > startD[1])
-        || bookH[0]>startH[0] || (bookH[0]<startH[0] && bookH[1]>startH[1])){
+        || bookH[0]>startH[0] ){
             layer.alert("预约时间超出可预约范围")
         }else{
             layer.load();

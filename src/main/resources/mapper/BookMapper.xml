@@ -38,7 +38,7 @@
         select count(*) from gym_book where place_id = #{placeId} and is_cancel=0 and is_arrive=0
     </select>
     <select id="checkApply" resultType="java.lang.String">
-        select count(*) from gym_bookwhere user_id = #{id} and is_cancel=0 and is_arrive=0
+        select count(*) from gym_book where user_id = #{id} and is_cancel=0 and is_arrive=0
     </select>
     <update id="updPlace">
     update gym_place set state = 2 where id = #{id}

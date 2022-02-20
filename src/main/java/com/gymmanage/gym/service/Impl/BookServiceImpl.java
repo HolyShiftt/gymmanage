@@ -36,7 +36,7 @@ public class BookServiceImpl implements BookService {
             if (id==null){
                 bookMapper.apply(book);
             }else {
-                if (bookMapper.checkApply(id)==null){
+                if (bookMapper.checkApply(id).equals("0")){
                     bookMapper.userApply(book.getStartTime(),book.getEndTime(),book.getPlaceId(),book.getName(),id);
                 }else{
                     ajaxRes.setMsg("您已经有预约了");
