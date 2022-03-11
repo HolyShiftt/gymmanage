@@ -104,7 +104,6 @@ public class PlaceServiceImpl implements PlaceService {
                 state = 0;
             }
         }
-
         if (pay == 1){
             placeMapper.payBill(id);
         }else{
