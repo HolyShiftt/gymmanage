@@ -1,5 +1,6 @@
 layui.use('table', function () {
     var table = layui.table,
+        form = layui.form,
         $ = layui.jquery;
 
     objectTable = table.render({
@@ -17,6 +18,16 @@ layui.use('table', function () {
 
     });
 
+    $.ajax({
+        url:'/place/getPlaceByState?state=1',
+        async : false,
+        success : function(d) {
+            $.each(d, function (index, item) {
+                $('#place').append(new Option(item.name, item.id));
+            });
+        }
+    })
+    form.render();
     // 添加按钮
     $("#addObject").click(function () {
         layer.open({
@@ -56,6 +67,14 @@ layui.use('table', function () {
                 type: 2,
                 area: ['30%', '70%'],
                 content: '/shopObject/shopObjectUpdatePage?id='+data.id
+            })
+        }else if (obj.event === 'buy'){
+            //编辑按钮
+            layer.open({
+                title: '购买商品',
+                type: 1,
+                area: ['30%', '70%'],
+                content: $("#buyObj")
             })
         }
     })

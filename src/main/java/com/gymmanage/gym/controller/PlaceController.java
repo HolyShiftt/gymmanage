@@ -107,4 +107,9 @@ public class PlaceController {
         return placeService.changeState(id, state,pay);
     }
 
+    @RequestMapping("/getPlaceByState")
+    @ResponseBody
+    public List<Place> getPlaceByState(Integer state){
+        return placeService.getPlaceByState(state);
+    }
 }

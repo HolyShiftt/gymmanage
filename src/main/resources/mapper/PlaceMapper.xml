@@ -81,4 +81,7 @@
     <select id="getApply" resultType="java.lang.String">
       select id from gym_book where place_id = #{id} and is_arrive =0 and is_cancel=0 order by start_time limit 1
     </select>
+    <select id="getPlaceByState" resultType="com.gymmanage.gym.entity.Place">
+      select * from gym_place where state = #{state}
+    </select>
 </mapper>

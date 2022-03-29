@@ -21,8 +21,9 @@
          delete from shop_bill where id = #{id}
     </delete>
     <select id="selectAll" resultType="com.gymmanage.bill.entity.Bill">
-        select s.id,s.creat_time,p.name as place_name, s.total from shop_bill s
+        select s.id,s.creat_time,p.name as place_name, s.total, c.user_name username from shop_bill s
         left join gym_place p on s.place_id = p.id
+        left join gym_client c on s.client_id = c.id
         where s.is_pay = #{pay}
     </select>
     <select id="getOne" resultType="com.gymmanage.bill.entity.Bill">

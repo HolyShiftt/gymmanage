@@ -12,9 +12,34 @@
     </div>
     <table class="layui-hide" id="objectTable" lay-filter="objectTable"></table>
 </div>
-
+<div id="buyObj" class="layer_self_wrap" style="display:none;">
+    <form class="layui-form" lay-filter="placeAdd" style="margin-top: 20px">
+        <div style="padding-right:50px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">数量<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="num" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">场馆</label>
+                <div class="layui-input-block">
+                    <select name="place" id="place">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary close">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-sm" lay-event="buy">客户购买</a>
     <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
 </script>
 <script src="/js/layui/layui.js"></script>

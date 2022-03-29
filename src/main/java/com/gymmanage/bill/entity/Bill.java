@@ -32,6 +32,8 @@ public class Bill {
 
     private String place_time;
 
+    private String username;
+
     private Integer place_price;
 
     private Integer is_pay;

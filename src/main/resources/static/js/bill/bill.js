@@ -6,14 +6,14 @@ layui.use('table', function () {
     // 账单信息表格
     billTable = table.render({
         elem: '#billTable'
-        , url: '/bill/billList'
+        , url: '/bill/billList?pay=1'
         , where: {pay:0}
         , page: true
         , cols: [[
             {field: 'creat_time', title: '创建时间'}
+            , {field: 'username', title: '客户名称'}
             , {field: 'place_name', title: '场地名称'}
             , {field: 'total', title: '总价'}
-            , {fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
         ]]
     });
 

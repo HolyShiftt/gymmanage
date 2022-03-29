@@ -125,4 +125,9 @@ public class PlaceServiceImpl implements PlaceService {
         }
         return ajaxRes;
     }
+
+    @Override
+    public List<Place> getPlaceByState(Integer state) {
+        return placeMapper.getPlaceByState(state);
+    }
 }

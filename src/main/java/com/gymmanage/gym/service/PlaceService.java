@@ -27,4 +27,6 @@ public interface PlaceService {
 
     AjaxRes changeState(Integer id, Integer state,Integer pay);
 
+    List<Place> getPlaceByState(Integer state);
+
 }

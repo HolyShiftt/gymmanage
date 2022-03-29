@@ -41,4 +41,6 @@ public interface PlaceMapper {
     int createBill(Integer placeId, String time);
 
     String getApply(Integer id);
+
+    List<Place> getPlaceByState(Integer state);
 }
