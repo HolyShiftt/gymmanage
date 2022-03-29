@@ -154,6 +154,21 @@ public class UserController {
         return ajaxRes;
     }
 
+    @RequestMapping("/passwordUpdate2")
+    @ResponseBody
+    public AjaxRes passwordUpdate2(String pwd1,String pwd2,HttpSession session){
+        AjaxRes ajaxRes = new AjaxRes();
+        String username = (String) session.getAttribute("username");
+        boolean res = userService.checkPwd2(username, pwd1);
+        if (!res){
+            ajaxRes.setMsg("原密码错误");
+            ajaxRes.setSuccess(false);
+        }else{
+            ajaxRes = userService.passwordUpdate2(username, pwd2);
+        }
+        return ajaxRes;
+    }
+
     @RequestMapping("/freeUser")
     @ResponseBody
     public List<User> freeUser(){

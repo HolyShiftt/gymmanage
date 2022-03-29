@@ -1,5 +1,6 @@
 package com.gymmanage.sys.service;
 
+import com.gymmanage.client.entity.Client;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.utils.AjaxRes;
 
@@ -19,11 +20,17 @@ public interface UserService {
 
     boolean checkPwd(String username, String pwd );
 
+    boolean checkPwd2(String username, String pwd );
+
     String checkClientPwd(String username, String pwd, HttpSession session);
+
+    Client getClientByUsername(String username);
 
     User getOne(Integer id);
 
     AjaxRes passwordUpdate(String username, String pwd) throws NoSuchAlgorithmException, UnsupportedEncodingException;
+
+    AjaxRes passwordUpdate2(String username, String pwd);
 
     List<User> freeUser();
 }

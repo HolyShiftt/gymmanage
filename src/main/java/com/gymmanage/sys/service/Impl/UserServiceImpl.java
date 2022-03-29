@@ -82,6 +82,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean checkPwd2(String username, String pwd) {
+        String pwd1 = userMapper.getClientPwd(username).getPwd();
+        return pwd.equals(pwd1);
+    }
+
+    @Override
     public String checkClientPwd(String username, String pwd, HttpSession session) {
         Client clientPwd = userMapper.getClientPwd(username);
         if (clientPwd!=null){
@@ -95,6 +101,11 @@ public class UserServiceImpl implements UserService {
         }else {
             return "no";
         }
+    }
+
+    @Override
+    public Client getClientByUsername(String username) {
+        return userMapper.getClientPwd(username);
     }
 
     @Override
@@ -114,6 +125,21 @@ public class UserServiceImpl implements UserService {
             ajaxRes.setMsg("密码修改成功,请重新登录");
             ajaxRes.setSuccess(true);
         }catch (Exception e){
+            ajaxRes.setMsg("密码修改失败");
+            ajaxRes.setSuccess(false);
+        }
+        return ajaxRes;
+    }
+
+    @Override
+    public AjaxRes passwordUpdate2(String username, String pwd) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            userMapper.passwordUpdate2(username,pwd);
+            ajaxRes.setMsg("密码修改成功,请重新登录");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            System.out.println(e);
             ajaxRes.setMsg("密码修改失败");
             ajaxRes.setSuccess(false);
         }

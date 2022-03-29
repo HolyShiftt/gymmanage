@@ -94,8 +94,11 @@ layui.use(['layer', 'util', 'element'], function () {
         $("#menu1>a>span").text("运动馆")
         $("#menu2>a>span").text("个人信息")
         $("#gym").append(`<dd class='menu' id="book"><a href='javascript:;'>运动馆预约</a></dd>
-                    <dd class='menu' id="myBook"><a href='javascript:;'>我的预约</a></dd>`)
-        $("#client").append(`<dd class='menu' id="updClient"><a href='javascript:;'>信息修改</a></dd>`)
+                    <dd class='menu' id="myBook"><a href='javascript:;'>我的预约</a></dd>
+<!--                    <dd class='menu' id="buyCoach"><a href='javascript:;'>聘请教练</a></dd>-->
+<!--                    <dd class='menu' id="buyObj"><a href='javascript:;'>购买商品</a></dd>-->`)
+        $("#client").append(`<dd class='menu' id="updClient"><a href='javascript:;'>信息修改</a></dd>
+                    <dd class='menu' id="updClientPwd"><a href='javascript:;'>密码修改</a></dd>`)
         // $("#menutree").append(`<li class="layui-nav-item layui-nav-itemed">
         //             <a href="javascript:void(0)">运动馆</a>
         //             <dl class="layui-nav-child" id="book">
@@ -118,9 +121,18 @@ layui.use(['layer', 'util', 'element'], function () {
             } else if (id == 'myBook') {
                 url = "/client/myBook";
                 title = '我的预约'
-            } else if (id == 'updClient') {
-                url = "/client/updClient";
+            } else if (id == 'buyCoach') {
+                url = "/client/buyCoach";
+                title = '聘请教练'
+            } else if (id == 'buyObj') {
+                url = "/client/buyObj";
+                title = '购买商品'
+            } else if (id == 'updClient'){
+                url = '/client/clientUpdatePage2?username='+sessionStorage.getItem("username")
                 title = '信息修改'
+            } else if (id == 'updClientPwd'){
+                url = '/client/updPwd'
+                title = '密码修改'
             }
             changeTab(url, id, title)
         })

@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.gymmanage.client.entity.Client;
 import com.gymmanage.client.service.ClientService;
+import com.gymmanage.sys.service.UserService;
 import com.gymmanage.utils.AjaxRes;
 import com.gymmanage.utils.LayuiPage;
 import com.gymmanage.utils.Table;
@@ -21,6 +22,9 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("clientPage")
     public String clientPage(){
@@ -42,9 +46,31 @@ public class ClientController {
         return "/client/myBook";
     }
 
+    @RequestMapping("buyCoach")
+    public String buyCoach(){
+        return "/client/buyCoach";
+    }
+
+    @RequestMapping("updPwd")
+    public String updPwd(){
+        return "/client/updPwd";
+    }
+
+    @RequestMapping("buyObj")
+    public String buyObj(){
+        return "/client/buyObj";
+    }
+
     @RequestMapping("clientUpdatePage")
     public String clientUpdatePage(Integer id, HttpSession session){
         session.setAttribute("updateClientId",id);
+        return "/client/clientUpdate";
+    }
+
+    @RequestMapping("clientUpdatePage2")
+    public String clientUpdatePage2(String username, HttpSession session){
+        Client clientByUsername = userService.getClientByUsername(username);
+        session.setAttribute("updateClientId",clientByUsername.getId());
         return "/client/clientUpdate";
     }
 

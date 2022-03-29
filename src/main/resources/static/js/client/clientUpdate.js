@@ -4,6 +4,11 @@ layui.use(['layer', 'form','laydate'], function () {
         , form = layui.form
         , laydate = layui.laydate;
 
+    if (sessionStorage.getItem("role") == "user"){
+        $("#user_name").attr("style","display:none")
+    }else{
+        $("#user_name").attr("style","display:block")
+    }
     // 获取该行数据
     $.ajax('/client/getOne', {
         async : false,
@@ -27,8 +32,12 @@ layui.use(['layer', 'form','laydate'], function () {
                     icon : 6,
                     time : 2000
                 }, function() {
-                    parent.layer.close(parent.layer.getFrameIndex(window.name))
-                    parent.clientTable.reload();
+                    if (sessionStorage.getItem("role") == "user"){
+                        layer.closeAll('loading');
+                    }else{
+                        parent.layer.close(parent.layer.getFrameIndex(window.name))
+                        parent.clientTable.reload();
+                    }
                 })
             } else {
                 layer.alert(d.msg || d.message)

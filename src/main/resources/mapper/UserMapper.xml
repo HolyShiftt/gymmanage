@@ -30,6 +30,11 @@
         set pwd = #{pwd}
         where username = #{username}
     </update>
+    <update id="passwordUpdate2">
+        update gym_client
+        set pwd = #{pwd}
+        where user_name = #{username}
+    </update>
     <delete id="deleteUser">
         delete from sys_user
         where id = #{id}
@@ -62,6 +67,6 @@
         where role = 0;
     </select>
     <select id="getClientPwd" resultType="com.gymmanage.client.entity.Client">
-        select * from gym_client where tel = #{username}
+        select * from gym_client where tel = #{username} or user_name = #{username}
     </select>
 </mapper>

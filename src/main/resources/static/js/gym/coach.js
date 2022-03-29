@@ -67,6 +67,14 @@ layui.use('table', function () {
                 area: ['30%', '70%'],
                 content: '/coach/coachUpdatePage?id='+data.id
             })
+        }else if (obj.event === 'hire'){
+            //编辑按钮
+            layer.open({
+                title: '聘请',
+                type: 2,
+                area: ['30%', '70%'],
+
+            })
         }
     })
 

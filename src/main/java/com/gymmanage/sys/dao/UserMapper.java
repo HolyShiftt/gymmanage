@@ -31,5 +31,7 @@ public interface UserMapper {
 
     void passwordUpdate(String username, String pwd);
 
+    void passwordUpdate2(String username, String pwd);
+
     List<User> freeUser();
 }
