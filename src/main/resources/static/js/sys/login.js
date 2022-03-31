@@ -42,5 +42,13 @@ layui.use('element', function() {
             $("#sub").html('客户登录')
         }
     })
+    $("#signUpBtn").click(function () {
+        layer.open({
+            title: '注册',
+            type: 1,
+            area: ['40%', '40%'],
+            content: $("#signUp")
+        })
+    })
 
 })

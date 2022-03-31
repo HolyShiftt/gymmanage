@@ -5,13 +5,15 @@
     <title>密码修改</title>
     <link rel="stylesheet" href="/js/layui/css/layui.css">
     <style type="text/css">
-        input{
+        input {
             width: 80%;
         }
-        .layui-form-label{
-            width:110px;
+
+        .layui-form-label {
+            width: 110px;
         }
-        .layui-input-block{
+
+        .layui-input-block {
             margin-left: 150px;
         }
     </style>
@@ -23,24 +25,28 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">原密码<span style="color: red">*</span></label>
                 <div class="layui-input-block">
-                    <input type="text" name="pwd1" id="pwd1" autocomplete="off" class="layui-input" lay-verify="required">
+                    <input type="text" name="pwd1" id="pwd1" autocomplete="off" class="layui-input"
+                           lay-verify="required">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">新密码<span style="color: red">*</span></label>
                 <div class="layui-input-block">
-                    <input type="text" name="pwd2" id="pwd2" autocomplete="off" class="layui-input" lay-verify="required">
+                    <input type="text" name="pwd2" id="pwd2" autocomplete="off" class="layui-input"
+                           lay-verify="required">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">再次输入新密码<span style="color: red">*</span></label>
                 <div class="layui-input-block">
-                    <input type="text" name="pwd3"  id="pwd3" autocomplete="off" class="layui-input" lay-verify="required">
+                    <input type="text" name="pwd3" id="pwd3" autocomplete="off" class="layui-input"
+                           lay-verify="required">
                 </div>
             </div>
-        <div class="layui-form-item" style="text-align: center">
-            <div class="layui-input-block" style="margin-left: 0;margin-top: 50px">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+            <div class="layui-form-item" style="text-align: center">
+                <div class="layui-input-block" style="margin-left: 0;margin-top: 50px">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                </div>
             </div>
         </div>
     </form>
@@ -52,23 +58,23 @@
         var $ = layui.$
             , layer = layui.layer
             , form = layui.form;
-        form.on('submit(formDemo)', function(data) {
-            if ($("#pwd2").val() !== $("#pwd3").val()){
+        form.on('submit(formDemo)', function (data) {
+            if ($("#pwd2").val() !== $("#pwd3").val()) {
                 layer.alert("两次输入的新密码不一致")
                 layer.closeAll('loading');
                 return false;
-            }else{
+            } else {
                 layer.load();
-                $.post('/user/passwordUpdate', data.field, function(d) {
+                $.post('/user/passwordUpdate', data.field, function (d) {
                     if (d.success) {
                         layer.msg(d.msg, {
-                            icon : 6,
-                            time : 2000
-                        }, function() {
+                            icon: 6,
+                            time: 2000
+                        }, function () {
                             $.ajax({
-                                method:"post",
-                                url:"/user/logout",
-                                success : function(d) {
+                                method: "post",
+                                url: "/user/logout",
+                                success: function (d) {
                                     parent.window.location.href = "/";
                                 }
                             })
