@@ -20,6 +20,7 @@ layui.use(['layer', 'form','laydate'], function () {
         }
     });
 
+
     // 渲染表单
     form.render();
 

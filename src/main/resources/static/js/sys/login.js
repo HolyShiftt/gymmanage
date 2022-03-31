@@ -32,12 +32,14 @@ layui.use('element', function() {
     $(".role").on("click",function (data) {
         if(data.target.innerHTML == '管理员登录'){
             sessionStorage.setItem("role","admin")
+            $('#yhm').html('用户名');
             $('#role').val('admin');
             $("#sub").html('管理员登录')
         }else{
             sessionStorage.setItem("role","user")
+            $('#yhm').html('手机号');
             $('#role').val('user');
-            $("#sub").html('用户登录')
+            $("#sub").html('客户登录')
         }
     })
 
