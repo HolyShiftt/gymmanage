@@ -15,4 +15,7 @@ public interface ShopObjectService {
     AjaxRes shopObjectDel(Integer id);
 
     ShopObject getOne(Integer id);
+
+    AjaxRes buyObj(Integer id,Integer num,Integer place);
+
 }

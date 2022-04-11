@@ -16,4 +16,6 @@ public interface BillService {
     Bill getOne(Integer id);
 
     Bill getOneByPlaceId(Integer placeId);
+
+    Bill getOneById(Integer id);
 }

@@ -38,9 +38,15 @@ public interface PlaceMapper {
 
     int payBill(Integer id);
 
+    int getBillIdByPlace(Integer id);
+
     int createBill(Integer placeId, String time);
 
     String getApply(Integer id);
 
     List<Place> getPlaceByState(Integer state);
+
+    void changeCoachState(Integer coachId);
+
+    int getCoachId(Integer billId);
 }

@@ -68,4 +68,11 @@ public class ShopObjectController {
     public AjaxRes shopObjectDel(Integer id){
         return shopObjectService.shopObjectDel(id);
     }
+
+    @RequestMapping("/buyObj")
+    @ResponseBody
+    public AjaxRes buyObj(Integer id,Integer num,Integer place){
+        return shopObjectService.buyObj(id,num,place);
+    }
+
 }

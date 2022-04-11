@@ -15,6 +15,10 @@
       insert into sys_user(`username`, `name`,tel, id_number,pwd,role_time,role)
         values (#{username},#{name},#{tel}, #{idNumber},#{pwd},#{roleTime},#{role})
     </insert>
+    <insert id="signIn">
+        insert into gym_client(user_name,tel,pwd)
+        values (#{name},#{phone},#{pwd1})
+    </insert>
     <update id="updateUser">
         update sys_user
         set username = #{username},
@@ -68,5 +72,8 @@
     </select>
     <select id="getClientPwd" resultType="com.gymmanage.client.entity.Client">
         select * from gym_client where tel = #{username} or user_name = #{username}
+    </select>
+    <select id="getByPhone" resultType="java.lang.Integer">
+        select count(*) from gym_client where tel = #{phone}
     </select>
 </mapper>

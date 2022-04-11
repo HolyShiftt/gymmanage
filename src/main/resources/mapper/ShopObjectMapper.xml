@@ -4,6 +4,9 @@
     <insert id="shopObjectAdd">
         insert into shop_object (`name`, price, `desc`, num) values (#{name},#{price},#{desc},#{num})
     </insert>
+    <insert id="addToBill">
+        insert into shop_bill_type (`bill_id`,`type`,`id`,num) values (#{billId},'obj',#{id},#{num})
+    </insert>
     <update id="shopObjectUpdate">
         update shop_object
         set
@@ -11,6 +14,11 @@
         price = #{price},
         `desc` = #{desc},
         num = #{num}
+        where id = #{id}
+    </update>
+    <update id="decreaseNum">
+        update shop_object
+        set num = CONCAT(num-${num})
         where id = #{id}
     </update>
     <delete id="shopObjectDel">
@@ -21,5 +29,9 @@
     </select>
     <select id="getOne" resultType="com.gymmanage.shop.entity.ShopObject">
         select * from shop_object where id = #{id}
+    </select>
+    <select id="getBillIdByPlace" resultType="java.lang.Integer">
+        select id from shop_bill
+        where place_id = #{place} and is_pay=0
     </select>
 </mapper>

@@ -35,6 +35,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public AjaxRes clientUpdate(Client client) {
+        if (client.getIs_vip()==null){
+            client.setIs_vip(0);
+        }
         AjaxRes ajaxRes = new AjaxRes();
         try {
             clientMapper.clientUpdate(client);

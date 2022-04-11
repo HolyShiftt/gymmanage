@@ -34,4 +34,8 @@ public interface UserMapper {
     void passwordUpdate2(String username, String pwd);
 
     List<User> freeUser();
+
+    void signIn(String name,String phone,String pwd1);
+
+    int getByPhone(String phone);
 }

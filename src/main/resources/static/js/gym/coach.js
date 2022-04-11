@@ -1,5 +1,6 @@
 layui.use('table', function () {
     var table = layui.table,
+        form = layui.form,
         $ = layui.jquery;
 
 
@@ -27,6 +28,17 @@ layui.use('table', function () {
 
     });
 
+    // 场馆下拉框
+    $.ajax({
+        url:'/place/getPlaceByState?state=1',
+        async : false,
+        success : function(d) {
+            $.each(d, function (index, item) {
+                $('#place').append(new Option(item.name, item.id));
+            });
+        }
+    })
+    form.render();
     // 添加按钮
     $("#addCoach").click(function () {
         layer.open({
@@ -68,14 +80,38 @@ layui.use('table', function () {
                 content: '/coach/coachUpdatePage?id='+data.id
             })
         }else if (obj.event === 'hire'){
+            $("#id").val(data.id);
             //编辑按钮
             layer.open({
                 title: '聘请',
-                type: 2,
-                area: ['30%', '70%'],
-
+                type: 1,
+                area: ['30%', '30%'],
+                content: $("#hire")
             })
         }
+    })
+
+    form.on('submit(formDemo)', function(data) {
+        layer.load();
+        $.post('/coach/buyCoach', data.field, function(d) {
+            if (d.success) {
+                layer.msg(d.msg, {
+                    icon : 6,
+                    time : 2000
+                }, function() {
+                    layer.closeAll();
+                    coachTable.reload()
+                })
+            } else {
+                layer.alert(d.msg)
+                layer.closeAll('loading');
+            }
+        });
+        return false;
+    });
+
+    $('.close').click(function() {
+        layer.closeAll()
     })
 
 });

@@ -33,4 +33,8 @@ public interface UserService {
     AjaxRes passwordUpdate2(String username, String pwd);
 
     List<User> freeUser();
+
+    void signIn(String name,String phone,String pwd1);
+
+    int getByPhone(String phone);
 }

@@ -160,9 +160,6 @@ layui.use('table', function(){
             }else if(data.state == 3){
                 layer.alert("该场地已暂停使用")
             }else{
-                if(data.state == 2){
-
-                }
                 $.ajax({
                     url:'/place/changeState',
                     data:{id:data.id,state:1,pay:0},

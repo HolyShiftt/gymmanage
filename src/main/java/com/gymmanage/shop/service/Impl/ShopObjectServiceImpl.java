@@ -66,4 +66,15 @@ public class ShopObjectServiceImpl implements ShopObjectService {
     public ShopObject getOne(Integer id) {
         return shopObjectMapper.getOne(id);
     }
+
+    @Override
+    public AjaxRes buyObj(Integer id, Integer num, Integer place) {
+        AjaxRes ajaxRes = new AjaxRes();
+        shopObjectMapper.decreaseNum(id, num);
+        int billId = shopObjectMapper.getBillIdByPlace(place);
+        shopObjectMapper.addToBill(id,num,billId);
+        ajaxRes.setMsg("操作成功");
+        ajaxRes.setSuccess(true);
+        return ajaxRes;
+    }
 }

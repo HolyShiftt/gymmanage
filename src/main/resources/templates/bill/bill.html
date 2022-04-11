@@ -9,7 +9,16 @@
 <div style="padding: 0 30px;">
     <table class="layui-hide" id="billTable" lay-filter="billTable"></table>
 </div>
-
+<div id="bill" class="layer_self_wrap" style="display:none;">
+    <form class="layui-form" lay-filter="placeAdd" style="margin-top: 20px">
+        <div id="billInfo"></div>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block" style="margin-left: 0">
+                <button class="layui-btn" id="pay">结账</button>
+            </div>
+        </div>
+    </form>
+</div>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="bill">消费详情</a>
 </script>

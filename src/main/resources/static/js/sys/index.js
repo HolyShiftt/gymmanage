@@ -86,7 +86,7 @@ layui.use(['layer', 'util', 'element'], function () {
         $(function () {
             setTimeout(function () {
                 $("#sys5").click();
-            }, 3000);
+            }, 1000);
         });
     } else if (sessionStorage.getItem("role") == 'user') {
         $("#menu3").empty()

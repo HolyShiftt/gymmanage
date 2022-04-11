@@ -73,4 +73,11 @@ public class CoachController {
     public AjaxRes coachDel(Integer id){
         return coachService.coachDel(id);
     }
+
+
+    @RequestMapping("/buyCoach")
+    @ResponseBody
+    public AjaxRes buyCoach(Integer id,Integer place){
+        return coachService.buyCoach(id,place);
+    }
 }

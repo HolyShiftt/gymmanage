@@ -3,6 +3,7 @@ package com.gymmanage.gym.service.Impl;
 import com.gymmanage.gym.dao.CoachMapper;
 import com.gymmanage.gym.entity.Coach;
 import com.gymmanage.gym.service.CoachService;
+import com.gymmanage.shop.dao.ShopObjectMapper;
 import com.gymmanage.sys.entity.User;
 import com.gymmanage.utils.AjaxRes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class CoachServiceImpl implements CoachService {
 
     @Autowired
     private CoachMapper coachMapper;
+
+    @Autowired
+    private ShopObjectMapper shopObjectMapper;
 
     @Override
     public List<Coach> selectAll() {
@@ -66,6 +70,17 @@ public class CoachServiceImpl implements CoachService {
     @Override
     public Coach getOne(Integer id) {
         return coachMapper.getOne(id);
+    }
+
+    @Override
+    public AjaxRes buyCoach(Integer id, Integer place) {
+        AjaxRes ajaxRes = new AjaxRes();
+        coachMapper.changeState(id,1);
+        int billId = shopObjectMapper.getBillIdByPlace(place);
+        coachMapper.addToBill(id,billId);
+        ajaxRes.setMsg("操作成功");
+        ajaxRes.setSuccess(true);
+        return ajaxRes;
     }
 
 }

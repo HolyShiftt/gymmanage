@@ -18,4 +18,8 @@ public interface CoachMapper {
     int coachDel(Integer id);
 
     Coach getOne(Integer id);
+
+    void addToBill(Integer id,Integer billId);
+
+    void changeState(Integer id,Integer state);
 }

@@ -17,4 +17,10 @@ public interface ShopObjectMapper {
     int shopObjectDel(Integer id);
 
     ShopObject getOne(Integer id);
+
+    void decreaseNum(Integer id,Integer num);
+
+    void addToBill(Integer id, Integer num, Integer billId);
+
+    int getBillIdByPlace(Integer place);
 }

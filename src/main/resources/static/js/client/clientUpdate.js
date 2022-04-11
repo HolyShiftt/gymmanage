@@ -6,8 +6,10 @@ layui.use(['layer', 'form','laydate'], function () {
 
     if (sessionStorage.getItem("role") == "user"){
         $("#user_name").attr("style","display:none")
+        $("#vip").attr("style","display:none")
     }else{
         $("#user_name").attr("style","display:block")
+        $("#vip").attr("style","display:block")
     }
     // 获取该行数据
     $.ajax('/client/getOne', {

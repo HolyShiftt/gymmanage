@@ -67,10 +67,6 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public Bill getOne(Integer id) {
-        List<BillItem> billItem = billMapper.getBillItem(1);
-        for (BillItem o : billItem) {
-            System.out.println(o.getType());
-        }
         return billMapper.getOne(id);
     }
 
@@ -80,7 +76,7 @@ public class BillServiceImpl implements BillService {
         List<Coach> coachList = new ArrayList<Coach>();
         Bill oneByPlaceId = billMapper.getOneByPlaceId(placeId);
         List<BillItem> billItem = billMapper.getBillItem(placeId);
-        if(billItem.size()!=1){
+        if(billItem.size()!=0){
             for (BillItem o : billItem) {
                 if (o.getType().equals("obj")){
                     ShopObject obj = billMapper.getObj(o.getId());
@@ -96,5 +92,36 @@ public class BillServiceImpl implements BillService {
             oneByPlaceId.setCoachList(coachList);
         }
         return oneByPlaceId;
+    }
+
+    @Override
+    public Bill getOneById(Integer id) {
+        List<ShopObject> objectList = new ArrayList<ShopObject>();
+        List<Coach> coachList = new ArrayList<Coach>();
+        Bill oneByPlaceId = billMapper.getOneById(id);
+        try {
+
+            List<BillItem> billItem = billMapper.getBillItem2(id);
+            if(billItem.size()!=0){
+                for (BillItem o : billItem) {
+                    if (o.getType().equals("obj")){
+                        ShopObject obj = billMapper.getObj(o.getId());
+                        obj.setBillNum(o.getNum());
+                        objectList.add(obj);
+                    }else if (o.getType().equals("coach")){
+                        Coach coach = billMapper.getCoach(o.getId());
+                        coach.setTime(o.getNum());
+                        coachList.add(coach);
+                    }
+                }
+                oneByPlaceId.setObjectList(objectList);
+                oneByPlaceId.setCoachList(coachList);
+            }
+
+        }catch (Exception e){
+
+        }
+        return oneByPlaceId;
+
     }
 }

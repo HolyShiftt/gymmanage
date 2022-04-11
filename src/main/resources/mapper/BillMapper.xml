@@ -36,10 +36,20 @@
         left join shop_bill_type t on t.bill_id = s.id
         where s.place_id = #{placeId} and is_pay = 0
     </select>
+    <select id="getBillItem2" resultType="com.gymmanage.bill.entity.BillItem">
+        select t.* from shop_bill s
+        left join shop_bill_type t on t.bill_id = s.id
+        where s.id = #{id}
+    </select>
     <select id="getOneByPlaceId" resultType="com.gymmanage.bill.entity.Bill">
         select s.*,p.name as place_name,p.price as place_price from shop_bill s
         left join gym_place p on s.place_id = p.id
         where place_id = #{placeId} and is_pay = 0
+    </select>
+    <select id="getOneById" resultType="com.gymmanage.bill.entity.Bill">
+        select s.*,p.name as place_name,p.price as place_price from shop_bill s
+        left join gym_place p on s.place_id = p.id
+        where s.id = #{id}
     </select>
     <select id="getObj" resultType="com.gymmanage.shop.entity.ShopObject">
         select * from shop_object where id = #{id}

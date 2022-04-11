@@ -43,6 +43,11 @@
     is_pay = 1
     where place_id = #{id}
   </update>
+  <update id="changeCoachState">
+    update shop_coach set
+    state = 0
+    where id = #{coachId}
+  </update>
   <select id="getAllPlace" resultType="com.gymmanage.gym.entity.Place">
     select p.*, u.name as managerName ,p.kind_id as kindId,
     k.name as kindName from gym_place p
@@ -84,4 +89,13 @@
     <select id="getPlaceByState" resultType="com.gymmanage.gym.entity.Place">
       select * from gym_place where state = #{state}
     </select>
+  <select id="getBillIdByPlace" resultType="java.lang.Integer">
+    select id from shop_bill where
+    is_pay = 0
+    and place_id = #{id}
+  </select>
+  <select id="getCoachId" resultType="java.lang.Integer">
+    select id from shop_bill_type
+    where bill_id = #{billId} and `type` = 'coach'
+  </select>
 </mapper>

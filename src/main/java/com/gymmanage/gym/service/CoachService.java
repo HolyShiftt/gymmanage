@@ -17,4 +17,6 @@ public interface CoachService {
 
     Coach getOne(Integer id);
 
+    AjaxRes buyCoach(Integer id,Integer place);
+
 }

@@ -4,6 +4,9 @@
     <insert id="coachAdd">
         insert into shop_coach (name, sex, age, course, price) values (#{name},#{sex},#{age},#{course},#{price})
     </insert>
+    <insert id="addToBill">
+        insert into shop_bill_type (`bill_id`,`type`,`id`,num) values (#{billId},'coach',#{id},1)
+    </insert>
     <update id="coachUpdate">
         update shop_coach
         set
@@ -12,6 +15,11 @@
         age = #{age},
         course = #{course},
         price = #{price}
+        where id = #{id}
+    </update>
+    <update id="changeState">
+        update shop_coach
+        set state = #{state}
         where id = #{id}
     </update>
     <delete id="coachDel">

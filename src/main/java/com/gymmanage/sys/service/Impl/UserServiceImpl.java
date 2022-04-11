@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             ajaxRes.setSuccess(false);
         }else{
             if (user.getPwd().equals("") || user.getPwd()==null){
-                user.setPwd("654321");
+                user.setPwd("123456");
             }
             // 密码加密
             MessageDigest md5= MessageDigest.getInstance("MD5");
@@ -149,5 +149,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> freeUser() {
         return userMapper.freeUser();
+    }
+
+    @Override
+    public void signIn(String name,String phone, String pwd1) {
+        userMapper.signIn(name,phone,pwd1);
+    }
+
+    @Override
+    public int getByPhone(String phone) {
+        return userMapper.getByPhone(phone);
     }
 }

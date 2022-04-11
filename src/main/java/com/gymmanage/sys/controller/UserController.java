@@ -175,5 +175,18 @@ public class UserController {
         return userService.freeUser();
     }
 
+    @RequestMapping("/signIn")
+    @ResponseBody
+    public AjaxRes signIn(String name,String phone,String pwd1){
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            userService.getByPhone(phone);
+            ajaxRes.setSuccess(false);
+        }catch (Exception e){
+            ajaxRes.setSuccess(true);
+            userService.signIn(name,phone,pwd1);
+        }
+        return ajaxRes;
+    }
 
 }

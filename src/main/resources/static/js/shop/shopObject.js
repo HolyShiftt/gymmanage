@@ -69,6 +69,7 @@ layui.use('table', function () {
                 content: '/shopObject/shopObjectUpdatePage?id='+data.id
             })
         }else if (obj.event === 'buy'){
+            $("#id").val(data.id);
             //编辑按钮
             layer.open({
                 title: '购买商品',
@@ -79,4 +80,26 @@ layui.use('table', function () {
         }
     })
 
+    form.on('submit(formDemo)', function(data) {
+        layer.load();
+        $.post('/shopObject/buyObj', data.field, function(d) {
+            if (d.success) {
+                layer.msg(d.msg, {
+                    icon : 6,
+                    time : 2000
+                }, function() {
+                    layer.closeAll();
+                    objectTable.reload()
+                })
+            } else {
+                layer.alert(d.msg)
+                layer.closeAll('loading');
+            }
+        });
+        return false;
+    });
+
+    $('.close').click(function() {
+        layer.closeAll()
+    })
 });

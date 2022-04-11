@@ -63,6 +63,11 @@ public class BillController {
     public Bill getOneByPlaceId(Integer placeId){
         return billService.getOneByPlaceId(placeId);
     }
+    @RequestMapping("/getOneById")
+    @ResponseBody
+    public Bill getOneById(Integer id){
+        return billService.getOneById(id);
+    }
 
     @RequestMapping("/billUpdate")
     @ResponseBody

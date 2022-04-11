@@ -23,7 +23,11 @@ public interface BillMapper {
 
     List<BillItem> getBillItem(Integer placeId);
 
+    List<BillItem> getBillItem2(Integer id);
+
     Bill getOneByPlaceId(Integer placeId);
+
+    Bill getOneById(Integer id);
 
     ShopObject getObj(Integer id);
 

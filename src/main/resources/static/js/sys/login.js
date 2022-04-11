@@ -43,12 +43,40 @@ layui.use('element', function() {
         }
     })
     $("#signUpBtn").click(function () {
+        $("#name").val('')
+        $("#phone").val('')
+        $("#pwd1").val('')
+        $("#pwd2").val('')
         layer.open({
             title: '注册',
             type: 1,
-            area: ['40%', '40%'],
+            area: ['45%', '45%'],
             content: $("#signUp")
         })
+    })
+    // 注册提交
+    form.on('submit(formDemo)',function (data) {
+        if($("#pwd1").val() != $("#pwd2").val()){
+            layer.msg("两次密码输入不一致");
+        }else{
+            $.ajax("/user/signIn", {
+                method:'post',
+                data:data.field,
+                success : function(d) {
+                    if (d.success){
+                        layer.msg("注册成功", {
+                            icon : 6,
+                            time : 2000
+                        }, function() {
+                            layer.closeAll();
+                        })
+                    }else{
+                        layer.msg("该手机号已被注册");
+                    }
+                }
+            });
+        }
+        return false;
     })
 
 })
