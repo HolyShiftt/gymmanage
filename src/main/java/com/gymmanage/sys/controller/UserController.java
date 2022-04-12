@@ -179,12 +179,12 @@ public class UserController {
     @ResponseBody
     public AjaxRes signIn(String name,String phone,String pwd1){
         AjaxRes ajaxRes = new AjaxRes();
-        try {
-            userService.getByPhone(phone);
-            ajaxRes.setSuccess(false);
-        }catch (Exception e){
-            ajaxRes.setSuccess(true);
+        int byPhone = userService.getByPhone(phone);
+        if (byPhone == 0){
             userService.signIn(name,phone,pwd1);
+            ajaxRes.setSuccess(true);
+        }else {
+            ajaxRes.setSuccess(false);
         }
         return ajaxRes;
     }
