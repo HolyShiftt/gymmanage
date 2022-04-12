@@ -75,8 +75,8 @@ public class BillServiceImpl implements BillService {
         List<ShopObject> objectList = new ArrayList<ShopObject>();
         List<Coach> coachList = new ArrayList<Coach>();
         Bill oneByPlaceId = billMapper.getOneByPlaceId(placeId);
-        List<BillItem> billItem = billMapper.getBillItem(placeId);
-        if(billItem.size()!=0){
+        try{
+            List<BillItem> billItem = billMapper.getBillItem(placeId);
             for (BillItem o : billItem) {
                 if (o.getType().equals("obj")){
                     ShopObject obj = billMapper.getObj(o.getId());
@@ -90,6 +90,8 @@ public class BillServiceImpl implements BillService {
             }
             oneByPlaceId.setObjectList(objectList);
             oneByPlaceId.setCoachList(coachList);
+        }catch (Exception e){
+
         }
         return oneByPlaceId;
     }
