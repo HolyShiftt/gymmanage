@@ -77,7 +77,7 @@ public class BookServiceImpl implements BookService {
     public AjaxRes cancelApply(Integer id, Integer placeId) {
         AjaxRes ajaxRes = new AjaxRes();
         int state;
-        if (bookMapper.isApply(placeId)!=0){
+        if (bookMapper.isApply(placeId)!=1 && bookMapper.isApply(placeId)!=0){
             state = 2;
         }else{
             state = 0;

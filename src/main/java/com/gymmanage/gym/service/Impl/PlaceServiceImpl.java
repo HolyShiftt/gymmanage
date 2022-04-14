@@ -106,12 +106,15 @@ public class PlaceServiceImpl implements PlaceService {
         }
         if (pay == 1){
             int billId = placeMapper.getBillIdByPlace(id);
-            placeMapper.payBill(id);
+            int i = placeMapper.payBill(id);
             try {
                 int coachId = placeMapper.getCoachId(billId);
                 placeMapper.changeCoachState(coachId);
             }catch (Exception e){
-                System.out.println(e);
+                placeMapper.changeState(id, state);
+                ajaxRes.setMsg("操作成功");
+                ajaxRes.setSuccess(true);
+                return ajaxRes;
             }
         }else{
             placeMapper.createBill(id,dateFormat.format(date));

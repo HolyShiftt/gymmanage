@@ -209,6 +209,7 @@ layui.use('table', function(){
                                 total+=d.objectList[i].price *d.objectList[i].billNum;
                             }
                         }
+                        $("#payId").val(data.id)
 
                         $("#billInfo").append(`<div class="layui-form-item"><label class="layui-col-md5" style="float: right">总价：`+total+`</label>`);
                         layer.open({
@@ -218,22 +219,34 @@ layui.use('table', function(){
                             content : $("#bill")
                         })
 
+
+
                     }
 
                 })
-                $("#pay").click(function () {
-                    $.ajax({
-                        url:'/place/changeState',
-                        data:{id:data.id,state:0,pay:1},
-                        success : function(d) {
-                            placeTable.reload()
-                        }
-                    })
-                })
+
             }
         }
     })
 
+    $("#pay").click(function () {
+        $.ajax({
+            url:'/place/changeState',
+            data:{id:$("#payId").val(),state:0,pay:1},
+            sync:false,
+            complete : function(d) {
+                layer.msg("结账成功", {
+                    icon : 1,
+                    time : 2000
+                },function () {
+                    layer.closeAll();
+                    placeTable.reload();
+                })
+
+            }
+        })
+        return false;
+    })
     $(".close").click(function (){
         layer.closeAll();
     })
@@ -292,18 +305,17 @@ layui.use('table', function(){
             $.post('/book/cancelApply', {id:$("#id").val(),placeId:$("#placeId").val()}, function(d) {
                 if (d.success) {
                     layer.msg(d.msg, {
-                        icon : 6,
+                        icon : 1,
                         time : 2000
                     }, function() {
-
+                        layer.closeAll();
+                        placeTable.reload()
                     })
                 } else {
                     layer.alert(d.msg)
                     layer.closeAll('loading');
                 }
             });
-            layer.closeAll();
-            placeTable.reload()
         });
         return false;
     })
