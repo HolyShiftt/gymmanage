@@ -2,14 +2,12 @@ layui.use('table', function () {
     var table = layui.table,
         $ = layui.jquery;
 
-
     // 父菜单表格
     var pMenuTable = table.render({
         elem: '#pMenuTable'
         ,url:'/menu/menuList?pid=0'
         ,cols: [[
             {field:'title', title: '标题'}
-            , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
         ]]
     });
 

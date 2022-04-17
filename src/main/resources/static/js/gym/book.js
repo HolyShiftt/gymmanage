@@ -57,7 +57,18 @@ layui.use('table', function () {
                             icon : 6,
                             time : 2000
                         }, function() {
-
+                            bookTable.reload({
+                                where:{
+                                    isCancel:0
+                                }
+                                , cols: [[
+                                    {field: 'startTime', title: '开始时间'}
+                                    , {field: 'endTime', title: '结束时间'}
+                                    , {field: 'placeName', title: '场地名称'}
+                                    , {field: 'name', title: '预约人'}
+                                    , {fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
+                                ]]
+                            })
                         })
                     } else {
                         layer.alert(d.msg)
